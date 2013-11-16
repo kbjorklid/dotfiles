@@ -10,3 +10,5 @@ Install instructions
   * ~/dotfiles/vim/ symlink to ~/.vim/
   * ~/dotfiles/vimrc symlink to ~/.vimrc
   * ~/dotifles/zshrc symlink to ~/.zshrc
+
+For VIM, you need to run the Vundle install process. Open Vim and execute ':BundleInstall'.
