@@ -22,6 +22,12 @@ Bundle 'jakecraige/vim-colors'
 Bundle 'thingsinjars/Cobalt.vim'
 Bundle 'altercation/vim-colors-solarized'
 
+" Code Completion
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'marijnh/tern_for_vim'
+
+
+
 " check these out:
 "Bundle 'tpope/vim-surround'    
 "Bundle 'tpope/vim-unimpaired'
@@ -236,6 +242,11 @@ endif
 """""" Settings for Sparkup
 "  let g:sparkupExecuteMapping = '<leader>h'
   "let g:sparkupNextMapping = '<TAB>'
+
+""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe options
+"""""""""""""""""""""""""""""""""""""""""""""""
+set completeopt-=preview
 
 
 
