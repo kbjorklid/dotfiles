@@ -26,6 +26,22 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'marijnh/tern_for_vim'
 
+" JavaScript-related stuff
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'nathanaelkane/vim-indent-guides'
+
+" Open files quickly
+Bundle 'kien/ctrlp.vim' 
+
+" Expand selection
+Bundle 'terryma/vim-expand-region'
+
+Bundle 'scrooloose/nerdtree' 
+
+map <c-n> :NERDTreeToggle<cr>
+
+"let g:snips_trigger_key = '<c-j>'
+"Bundle 'msanders/snipmate.vim' 
 
 
 " check these out:
@@ -35,22 +51,17 @@ Bundle 'marijnh/tern_for_vim'
 " Bundle 'tpope/vim-fugitive'     
 " zendcoding for HTML
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'} 
-" Bundle 'kien/ctrlp.vim' 
 "Bundle 'othree/javascript-libraries-syntax.vim'
 "Bundle 'scrooloose/nerdcommenter' 
-"Bundle 'scrooloose/nerdtree' 
 "Bundle 'scrooloose/syntastic' 
-"Bundle 'msanders/snipmate.vim' 
 "Bundle 'Townk/vim-autoclose'
 "Bundle 'pangloss/vim-javascript'
 "Bundle 'hail2u/vim-css3-syntax'
 
 " Even more stuff:
-"Bundle 'ervandrew/supertab'
 "Bundle 'vim-scripts/TaskList.vim'
 "Bundle 'vim-scripts/taglist.vim'
 "Bundle 'kchmck/vim-coffee-script'
-"Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'duff/vim-scratch'
 
  "vim-scripts repos
@@ -118,6 +129,7 @@ filetype plugin indent on     " required!
 
 " Remove trailing whitespaces and ^M chars
   autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+
 
 " Change Working Directory to that of the current file
 "    cmap cwd lcd %:p:h
@@ -246,8 +258,9 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe options
 """""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -288,8 +301,13 @@ noremap <c-s>      :w<CR>
 vnoremap <c-s>     <C-C>:w<CR>
 inoremap <c-s>     <C-O>:w<CR>
 
+inoremap <c-CR> <CR><ESC>O
+
+nnoremap <leader>t  :tabe<CR>:CtrlP<CR>
+nnoremap <leader>o  :CtrlP<CR>
+
 "Bind jj to ESC for quicker switching modes
-inoremap jj <ESC>
+"inoremap jj <ESC>
 "inoremap <ESC> <nop>
 
 "Bind ,, to execute one command, return to insert mode
