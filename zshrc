@@ -33,6 +33,9 @@ export PATH=/home/kalleb/bin:/home/kalleb/apps/idea/bin:/usr/local/sbin:/usr/loc
 
 source $HOME/.dotfiles/aliases
 
+bindkey '^[OA' history-beginning-search-backward 
+bindkey '^[OB' history-beginning-search-forward 
+
 bindkey -v
 setopt inc_append_history
 setopt share_history
