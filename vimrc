@@ -23,7 +23,7 @@ Bundle 'thingsinjars/Cobalt.vim'
 Bundle 'altercation/vim-colors-solarized'
 
 " Code Completion
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'marijnh/tern_for_vim'
 
 " JavaScript-related stuff
@@ -166,7 +166,8 @@ if has('gui_running')
   set columns=126
 else
   set background=dark
-  colorscheme solarized
+  "colorscheme solarized
+  "colorscheme cobalt
   "colorscheme molokai
 endif
 

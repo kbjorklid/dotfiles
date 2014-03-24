@@ -1,0 +1,2 @@
+:map J :tabprev<CR>
+:map K :tabnext<CR>
