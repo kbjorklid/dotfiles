@@ -24,21 +24,21 @@ Bundle 'altercation/vim-colors-solarized'
 
 " Code Completion
 "Bundle 'Valloric/YouCompleteMe'
-Bundle 'marijnh/tern_for_vim'
+"Bundle 'marijnh/tern_for_vim'
 
 " JavaScript-related stuff
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'nathanaelkane/vim-indent-guides'
 
 " Open files quickly
-Bundle 'kien/ctrlp.vim' 
+"Bundle 'kien/ctrlp.vim' 
 
 " Expand selection
 Bundle 'terryma/vim-expand-region'
 
-Bundle 'scrooloose/nerdtree' 
+"Bundle 'scrooloose/nerdtree' 
 
-map <c-n> :NERDTreeToggle<cr>
+"map <c-n> :NERDTreeToggle<cr>
 
 "let g:snips_trigger_key = '<c-j>'
 "Bundle 'msanders/snipmate.vim' 
@@ -317,5 +317,5 @@ inoremap ,, <c-o>
 "CTRL-L to complete whole row
 inoremap <c-l>      <c-x><c-l>
 
-noremap +           $
-noremap $           <nop>   
+"noremap +           $
+"noremap $           <nop>   
