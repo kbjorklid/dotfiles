@@ -30,12 +30,32 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Shutnik/jshint2.vim'
 let jshint2_save = 1
 
-" == SNIPMATE (and requiremdents)
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+let g:UltiSnipsExpandTrigger = "<cr>"
 
-" == COMPLETION
+" == SNIPPETS
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+let g:ycm_use_ultisnips_completer=1
+
+" better key bindings for UltiSnipsExpandTrigger
+"let g:UltiSnipsExpandTrigger = "<c-cr>"
+"let g:UltiSnipsJumpForwardTrigger = "<tab>"
+"let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
+
+
+
 "Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
