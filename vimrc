@@ -20,6 +20,7 @@ Plugin 'editorconfig/editorconfig-vim'
 
 " == FILE / BUFFER MANAGEMENT
 Plugin 'kien/ctrlp.vim' 
+let g:ctrlp_show_hidden = 1
 
 " == COLORS
 Plugin 'thingsinjars/Cobalt.vim'
@@ -34,17 +35,14 @@ let g:UltiSnipsExpandTrigger = "<cr>"
 
 " == SNIPPETS
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 let g:ycm_use_ultisnips_completer=1
 
 " better key bindings for UltiSnipsExpandTrigger
-"let g:UltiSnipsExpandTrigger = "<c-cr>"
-"let g:UltiSnipsJumpForwardTrigger = "<tab>"
-"let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:UltiSnipsExpandTrigger = "<nop>"
 let g:ulti_expand_or_jump_res = 0
-function ExpandSnippetOrCarriageReturn()
+function! ExpandSnippetOrCarriageReturn()
     let snippet = UltiSnips#ExpandSnippetOrJump()
     if g:ulti_expand_or_jump_res > 0
         return snippet
@@ -63,6 +61,8 @@ Plugin 'marijnh/tern_for_vim'
 "let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 
+" == Easymotion
+Plugin 'Lokaltog/vim-easymotion'
 
 
 """"""""""""""""""""""""""""""""
@@ -144,7 +144,7 @@ filetype plugin indent on     " required!
   set scrolloff=3
   set showmode
   set hidden
-  "set wildmode=list:longest
+  set wildmode=list:longest
   set cursorline
   set ttyfast               " fast scrolling...
   set relativenumber
