@@ -198,7 +198,9 @@ filetype plugin indent on     " required!
 
 if has('gui_running')
   "colorscheme molokai
-  colorscheme zenburn
+  "colorscheme zenburn
+  set background=dark
+  colorscheme solarized
   " removes scrollbar and toolbar"
   set guioptions+=lrb
   set guioptions-=lrb           " Remove the toolbar
@@ -210,10 +212,10 @@ else
   set t_Co=256
   syntax on
   set background=dark
-  "colorscheme solarized
+  colorscheme solarized
   "colorscheme cobalt
-  "colorscheme molokai
-  colorscheme zenburn
+  colorscheme molokai
+  "colorscheme zenburn
 endif
 
 "Visual shifting (does not exit Visual mode on tab)
