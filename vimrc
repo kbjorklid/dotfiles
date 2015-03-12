@@ -17,6 +17,7 @@ let mapleader=","
 Plugin 'gmarik/vundle'
 Plugin 'tpope/vim-sensible'     
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'osyo-manga/vim-over'
 
 " == FILE / BUFFER MANAGEMENT
 Plugin 'kien/ctrlp.vim' 
@@ -25,11 +26,28 @@ let g:ctrlp_show_hidden = 1
 " == COLORS
 Plugin 'thingsinjars/Cobalt.vim'
 
+" == VERSION CONTROL
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+" == STATUS BAR
+Plugin 'bling/vim-airline'
+function! AirlineInit()
+    let g:airline_section_a = airline#section#create(['mode',' ','branch'])
+    let g:airline_section_b = airline#section#create_left(['ffenc','hunks','%f'])
+    let g:airline_section_c = airline#section#create(['filetype'])
+    let g:airline_section_x = airline#section#create(['%P'])
+    let g:airline_section_y = airline#section#create(['%B'])
+    let g:airline_section_z = airline#section#create_right(['%l', '%c'])
+endfunction
+autocmd VimEnter * call AirlineInit()
+
 " == JAVASCRIPT
 Plugin 'pangloss/vim-javascript'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Shutnik/jshint2.vim'
 let jshint2_save = 1
+Plugin 'mephux/vim-jsfmt'
 
 let g:UltiSnipsExpandTrigger = "<cr>"
 
@@ -64,6 +82,7 @@ set completeopt-=preview
 " == Easymotion
 Plugin 'Lokaltog/vim-easymotion'
 
+map <Leader> <Plug>(easymotion-prefix)
 
 """"""""""""""""""""""""""""""""
 " Check out these later
@@ -85,12 +104,12 @@ Plugin 'Lokaltog/vim-easymotion'
 " Expand selection
 "Bundle 'terryma/vim-expand-region'
 
-"Bundle 'scrooloose/nerdtree' 
+"Bundle 'scrooloose/nerdtree'
 
 "map <c-n> :NERDTreeToggle<cr>
 
 "let g:snips_trigger_key = '<c-j>'
-"Bundle 'msanders/snipmate.vim' 
+"Bundle 'msanders/snipmate.vim'
 
 
 " check these out:
@@ -153,13 +172,14 @@ filetype plugin indent on     " required!
   set noundofile
   set foldenable             " enable code folding
   set virtualedit=onemore    " Allow cursor beyondlast character
-  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+  "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 
   set tabstop=4
   set shiftwidth=4
   set softtabstop=4
   set expandtab
   map Q <nop>
+  set updatetime=1000 " mainly vim-gitgutter updates
 
   autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
@@ -177,7 +197,8 @@ filetype plugin indent on     " required!
   set foldlevelstart=20
 
 if has('gui_running')
-  colorscheme molokai
+  "colorscheme molokai
+  colorscheme zenburn
   " removes scrollbar and toolbar"
   set guioptions+=lrb
   set guioptions-=lrb           " Remove the toolbar
@@ -191,7 +212,8 @@ else
   set background=dark
   "colorscheme solarized
   "colorscheme cobalt
-  colorscheme molokai
+  "colorscheme molokai
+  colorscheme zenburn
 endif
 
 "Visual shifting (does not exit Visual mode on tab)
@@ -205,6 +227,7 @@ endif
 
 " 0 now goes to first char in line instead of blank"
   nnoremap 0 0^
+"nnoremap 0 ^
 
 "Split Window Navigation mapping
 "  nnoremap <leader>w <C-w>v<C-w>l
@@ -212,6 +235,9 @@ endif
   nnoremap <C-j> <C-w>j
   nnoremap <C-k> <C-w>k
   nnoremap <C-l> <C-w>l
+
+"inoremap <leader><leader> <c-o>
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
