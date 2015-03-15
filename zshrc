@@ -38,7 +38,7 @@ bindkey '^[OB' history-beginning-search-forward
 
 bindkey -v
 setopt inc_append_history
-setopt share_history
+# setopt share_history
 setopt auto_pushd
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
