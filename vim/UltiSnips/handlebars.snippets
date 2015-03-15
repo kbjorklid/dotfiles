@@ -1,0 +1,27 @@
+#Pure HBS (no html)
+snippet input "{{input value=...}}"
+{{input value=${1:target}}}
+endsnippet
+
+snippet action "{{action ...}}"
+{{action '${1:name}'}}
+endsnippet
+
+snippet partial "{{partial ...}}"
+{{partial '${1:name}'}}
+endsnippet
+
+snippet link-to-block "{{#link-to ..."
+{{#link-to '$1' $2}}
+	$3
+{{/link-to}}
+endsnippet
+
+snippet link-to "{{link-to ..."
+{{link-to $1 '$2' $3}}
+endsnippet
+
+#HTML + HBS
+snippet buttonAction "<button {{action ...}}>..."
+<button {{action '${1:action}'}}>${1/\w+/\u$0/}</button>
+endsnippet
