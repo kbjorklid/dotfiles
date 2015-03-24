@@ -1,15 +1,16 @@
 " === PLUGIN SETUP
 set nocompatible
+
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
-Plugin 'tpope/vim-sensible'     
+Plugin 'tpope/vim-sensible'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'osyo-manga/vim-over'
-Plugin 'kien/ctrlp.vim' 
+Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-fugitive'
@@ -18,7 +19,7 @@ Plugin 'bling/vim-airline'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Shutnik/jshint2.vim'
-Bundle 'othree/javascript-libraries-syntax.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'mephux/vim-jsfmt'
 Plugin 'rstacruz/sparkup'
 Plugin 'Valloric/YouCompleteMe'
@@ -27,6 +28,12 @@ Plugin 'SirVer/ultisnips'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
+Plugin 'junegunn/vim-peekaboo'
+Plugin 'scrooloose/nerdtree'
+Plugin 'othree/html5.vim'
+Plugin 'docunext/closetag.vim'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'rking/ag.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -38,6 +45,7 @@ let mapleader="\<Space>"
 " --- ControlP
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = '\v[\/]((temp|node_modules|target|dist|bower_modules)|(\.(swp|ico|git|svn)))$'
+let g:ctrlp_dont_split = 'nerdtree'
 nnoremap <leader>o :CtrlP<CR>
 
 " --- Expand Region
@@ -71,7 +79,6 @@ let g:ycm_use_ultisnips_completer=1
 
 " -- UltiSnips
 "let g:UltiSnipsExpandTrigger = "<CR>"
-let g:UltiSnipsExpandTrigger = "<nop>"
 let g:ulti_expand_or_jump_res = 0
 function! ExpandSnippetOrCarriageReturn()
     let snippet = UltiSnips#ExpandSnippetOrJump()
@@ -86,15 +93,24 @@ imap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "<
 
 " --- Easymotion
 map <Leader> <Plug>(easymotion-prefix)
-let g:EasyMotion_keys='hklyuiopnmqwertzxcvbasdgjf'
+let g:EasyMotion_keys='fgdsatrevcxwyopbnmiulkhj'
 
 " --- DelimitMate
 let delimitMate_expand_cr = 1
 au FileType javascript let b:delimitMate_quotes="\" '"
 au FileType javascript let b:delimitMate_matchpairs = "(:),[:],{:}"
+" Skip <, > even in html as it'll mess things up especially with sparkup
+au FileType html let b:delimitMate_matchpairs = "(:),[:],{:}"
+
+" --- Easy Align
+vmap <CR> <Plug>(EasyAlign)
 
 " == GENERAL SETTINGS
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg
+set wildignore+=.hg,.git,.svn                   "Version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg  "Binary images
+set wildignore+=*.sw?                           "Vim swap
+set wildignore+=*.class                         "Java compiled classes
+
 set noesckeys
 set mouse=a
 set mousehide
@@ -123,13 +139,12 @@ set ignorecase
 set smartcase
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
 set hlsearch
-set wrap
+set nowrap
 set textwidth=119
 set formatoptions=qrn1
 set colorcolumn=121
 set foldmethod=syntax
 set foldlevelstart=20
-
 
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
@@ -138,15 +153,15 @@ autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWri
 if has('gui_running')
   syntax enable
   colorscheme solarized
+  "let g:solarized_visibility = "high"
+  let g:solarized_contrast = "high"
   set background=dark
   highlight clear SignColumn
 
-  set guioptions+=lrb
-  set guioptions-=lrb           " Remove the toolbar
-  set guioptions-=T
+  set guioptions=aem
   set lines=40                " 40 lines of text instead of 24
   set columns=126
-  set guifont=Courier\ 10\ Pitch\ 11
+  set guifont=Monaco 11,Courier\ 10\ Pitch\ 11
 else
   set t_Co=256
   syntax on
@@ -155,9 +170,9 @@ else
 endif
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Strip whitespace
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" == UTILITY FUNCTIONS
+
 function! StripTrailingWhitespace()
   if !exists('g:spf13_keep_trailing_whitespace')
     " Preparation: save last search, and cursor position.
@@ -170,6 +185,18 @@ function! StripTrailingWhitespace()
   endif
 endfunction
 
+function! VisualFindAndReplace()
+    :OverCommandLine%s/
+    :w
+endfunction
+
+function! VisualFindAndReplaceWithSelection() range
+    :'<,'>OverCommandLine s/
+    :w
+endfunction
+
+nnoremap <Leader>fr :call VisualFindAndReplace()<cr>
+xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<cr>
 
 """"""""""""""""""""""""""""""""
 " Check out these later
@@ -181,32 +208,13 @@ endfunction
 " sass?
 "Bundle 'scrooloose/nerdtree'
 "Bundle 'tpope/vim-unimpaired'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'} 
 "Bundle 'othree/javascript-libraries-syntax.vim'
-"Bundle 'scrooloose/nerdcommenter' 
-"Bundle 'scrooloose/syntastic' 
+"Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/syntastic'
 "Bundle 'Townk/vim-autoclose'
 "Bundle 'pangloss/vim-javascript'
 "Bundle 'hail2u/vim-css3-syntax'
-"Bundle 'vim-scripts/TaskList.vim'
-"Bundle 'vim-scripts/taglist.vim'
 "Bundle 'duff/vim-scratch'
-
-
-" Gitgutter colors
-"
-"set background=dark
-"highlight clear SignColumn
-"highlight! SignColumn guibg=black
-"highlight! GitGutterAdd guibg=#005500
-"highlight! GitGutterAdd guifg=#33cc33
-"highlight! GitGutterChange guibg=#005555
-"highlight! GitGutterChange guifg=cyan
-"highlight! GitGutterDelete guibg=black
-"highlight! GitGutterDelete guifg=red
-"highlight! GitGutterChangeDelete guibg=#005555
-"highlight! GitGutterChangeDelete guifg=red
-"
 "
 " == GENERAL REMAPS
 "Visual shifting (does not exit Visual mode on tab)
@@ -227,8 +235,22 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap <leader>ev :e ~/.vimrc<cr>
-
-inoremap ,, <C-o>
-
+nnoremap <leader>es :so ~/.vimrc<cr>
 nnoremap <leader>q :bd<cr>
 nnoremap <leader>Q :w<cr>:bd<cr>
+
+nnoremap <leader>t :NERDTreeToggle<cr>
+
+inoremap <C-t> <esc>g_a
+inoremap ;; <esc>g_a;
+inoremap ;. <esc>g_a.
+inoremap ;: <esc>g_a:
+inoremap ;, <esc>g_a,
+inoremap ;+ <esc>g_a + 
+inoremap ;- <esc>g_a - 
+inoremap ;{ <esc>g_a {<cr>}<esc>O
+
+inoremap jk <esc>
+
+inoremap <C-CR> <C-o>o
+"inoremap <S-C-CR> <C-o>O
