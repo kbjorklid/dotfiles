@@ -6,3 +6,4 @@ ln -s $DIR/vimrc ~/.vimrc
 ln -s $DIR/zshrc ~/.zshrc
 ln -s $DIR/candykb.zsh-theme $OHMYZSHDIR/themes
 ln -s $DIR/vim/colors ~/.vim/colors
+cp $DIR/env.template.sh $DIR/env.sh

@@ -1,0 +1,6 @@
+#compdef c
+#autoload
+
+_c () {
+    _files -W $PROJECTS -/
+}
