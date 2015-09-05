@@ -125,6 +125,7 @@ set cursorline
 set ttyfast               " fast scrolling...
 set relativenumber
 set nobackup
+set nowritebackup
 set noswapfile
 set noundofile
 set foldenable             " enable code folding
@@ -161,7 +162,7 @@ if has('gui_running')
   set guioptions=aem
   set lines=40                " 40 lines of text instead of 24
   set columns=126
-  set guifont=Monaco 11,Courier\ 10\ Pitch\ 11
+  set guifont=Monaco\ 11,Courier\ 10\ Pitch\ 11
 else
   set t_Co=256
   syntax on
@@ -233,6 +234,12 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+"Begin/end of line  
+nnoremap <C-l> g_l
+inoremap <C-l> <esc>g_a
+nnoremap <C-h> 0^
+inoremap <C-h> <esc>0^i
 
 nnoremap <leader>ev :e ~/.vimrc<cr>
 nnoremap <leader>es :so ~/.vimrc<cr>

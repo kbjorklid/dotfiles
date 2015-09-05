@@ -29,7 +29,8 @@ plugins=(git npm github)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/home/kalleb/bin:/home/kalleb/apps/idea/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/kalleb/.npmglobal/bin
+export PATH=/home/kalleb/bin:/home/kalleb/apps/idea/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/kalleb/.npmglobal/bin:/home/kalleb/java/maven/bin
+
 
 source $HOME/.dotfiles/aliases
 
@@ -43,7 +44,7 @@ setopt auto_pushd
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
 
-export JAVA_HOME=/opt/java/jdk1.7.0_45/
+export JAVA_HOME=/opt/java/current-java
 
 
 NODE_PATH=$NODE_PATH:/home/kalleb/.npmglobal/lib/node_modules
