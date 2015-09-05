@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+c () {
+    cd "$PROJECTS/$1"
+}
