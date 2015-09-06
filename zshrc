@@ -1,5 +1,5 @@
 # Source environment specific things
-source $HOME/.dotfiles/env.sh
+source $HOME/.dotfiles/env.local.sh
 
 #Oh My Zsh
 ZSH=$HOME/.oh-my-zsh
