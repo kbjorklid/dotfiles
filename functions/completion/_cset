@@ -1,0 +1,6 @@
+#compdef cset
+#autoload
+
+_cset () {
+    _files -W $PROJECTS -/
+}

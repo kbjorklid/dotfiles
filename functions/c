@@ -1,5 +1,12 @@
 #!/bin/zsh
 
 c () {
-    cd "$PROJECTS/$1"
+    if [[ $# -eq 1 ]]; then
+        cd "$PROJECTS/$1"
+    elif [[ -f $HOME/.current-project ]]; then
+        local project=`cat $HOME/.current-project`
+        if [[ -d $project ]]; then
+            cd "$project"
+        fi
+    fi
 }
