@@ -1,0 +1,9 @@
+[alias]
+    uncommit = reset --soft HEAD^
+[push]
+    default = matching
+[include]
+    path = .dotfiles/gitconfig.local
+
+
+# vim: set ft=gitconfig :

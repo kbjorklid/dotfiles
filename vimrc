@@ -115,7 +115,8 @@ set noesckeys
 set mouse=a
 set mousehide
 set nocompatible
-set modelines=0
+set modeline
+set modelines=5
 set scrolljump=5
 set scrolloff=3
 set showmode
