@@ -259,6 +259,7 @@ inoremap ;- <esc>g_a -
 inoremap ;{ <esc>g_a {<cr>}<esc>O
 
 inoremap jk <esc>
+inoremap jj <esc>g_a
 
 inoremap <C-CR> <C-o>o
 "inoremap <S-C-CR> <C-o>O

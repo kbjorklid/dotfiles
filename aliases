@@ -1,1 +1,2 @@
 alias xo=xdg-open
+alias sz=source $HOME/.zshrc

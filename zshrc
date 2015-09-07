@@ -16,6 +16,9 @@ for file in $HOME/.dotfiles/functions/*; do
     fi
 done
 
+# History
+export HISTIGNORE="ls:cd:cd ~:pwd"
+
 # Misc config
 bindkey '^[OA' history-beginning-search-backward 
 bindkey '^[OB' history-beginning-search-forward 
@@ -26,4 +29,5 @@ setopt auto_pushd
 fpath=(~/.dotfiles/functions/completion $fpath)
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
+
 
