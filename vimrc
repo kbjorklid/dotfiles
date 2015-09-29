@@ -163,7 +163,7 @@ if has('gui_running')
   set guioptions=aem
   set lines=40                " 40 lines of text instead of 24
   set columns=126
-  set guifont=Monaco\ 11,Courier\ 10\ Pitch\ 11
+  set guifont=Courier\ 10\ Pitch\ 11
 else
   set t_Co=256
   syntax on
@@ -260,6 +260,7 @@ inoremap ;{ <esc>g_a {<cr>}<esc>O
 
 inoremap jk <esc>
 inoremap jj <esc>g_a
+inoremap JJ <esc>o
 
 inoremap <C-CR> <C-o>o
 "inoremap <S-C-CR> <C-o>O

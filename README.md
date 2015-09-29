@@ -3,10 +3,15 @@ Nothing fancy at the moment, just a personal dotfiles repo.
 Install instructions
 ====================
 
-1. Install oh-my-zsh
-2. clone this repo to ~/.dotfiles directory
-3. see and execute ~/.dotfiles/setup.sh
+# Install oh-my-zsh
+# clone this repo to ~/.dotfiles directory
+# see and execute ~/.dotfiles/setup.sh
 
 VIM setup:
-1. install Vundle: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-2. Run the Vundle install process. Open Vim and execute ':BundleInstall'.
+# install Vundle: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+# Run the Vundle install process. Open Vim and execute ':BundleInstall'.
+
+Awesome setup:
+# cd ~/.config/awesome
+# git clone https://github.com/mikar/awesome-themes.git
+# mv awesome-themes themes
