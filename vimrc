@@ -44,7 +44,7 @@ let mapleader="\<Space>"
 " === PLUGIN SETTINGS
 " --- ControlP
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = '\v[\/]((temp|node_modules|target|dist|bower_modules)|(\.(swp|ico|git|svn)))$'
+let g:ctrlp_custom_ignore = '\v[\/]((te?mp|node_modules|target|dist|bower_modules)|(\.(swp|ico|git|svn)))$'
 let g:ctrlp_dont_split = 'nerdtree'
 nnoremap <leader>o :CtrlP<CR>
 
@@ -92,7 +92,10 @@ endfunction
 imap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "<Plug>delimitMateCR"
 
 " --- Easymotion
-map <Leader> <Plug>(easymotion-prefix)
+"map <Leader> <Plug>(easymotion-prefix)
+nmap <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>j <Plug>(easymotion-j)
+nmap <Leader>k <Plug>(easymotion-k)
 let g:EasyMotion_keys='fgdsatrevcxwyopbnmiulkhj'
 
 " --- DelimitMate
@@ -125,6 +128,7 @@ set wildmode=list:longest
 set cursorline
 set ttyfast               " fast scrolling...
 set relativenumber
+set nu
 set nobackup
 set nowritebackup
 set noswapfile
@@ -189,16 +193,14 @@ endfunction
 
 function! VisualFindAndReplace()
     :OverCommandLine%s/
-    :w
 endfunction
 
 function! VisualFindAndReplaceWithSelection() range
     :'<,'>OverCommandLine s/
-    :w
 endfunction
 
-nnoremap <Leader>fr :call VisualFindAndReplace()<cr>
-xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<cr>
+nnoremap <Leader>r :call VisualFindAndReplace()<cr>
+xnoremap <Leader>r :call VisualFindAndReplaceWithSelection()<cr>
 
 """"""""""""""""""""""""""""""""
 " Check out these later
