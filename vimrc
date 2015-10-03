@@ -34,6 +34,7 @@ Plugin 'othree/html5.vim'
 Plugin 'docunext/closetag.vim'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'rking/ag.vim'
+Plugin 'ciaranm/inkpot'
 
 call vundle#end()
 filetype plugin indent on
@@ -151,8 +152,8 @@ set formatoptions=qrn1
 set colorcolumn=121
 set foldmethod=syntax
 set foldlevelstart=20
-
-
+set lcs=trail:·
+set list
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
 
@@ -172,7 +173,8 @@ else
   set t_Co=256
   syntax on
   set background=dark
-  colorscheme molokai
+  "colorscheme molokai
+  colorscheme inkpot
 endif
 
 
@@ -232,20 +234,7 @@ nnoremap k gk
 " 0 now goes to first char in line instead of blank"
 nnoremap 0 0^
 
-"Split Window Navigation mapping
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
-"Begin/end of line  
-nnoremap <C-l> g_l
-inoremap <C-l> <esc>g_a
-nnoremap <C-h> 0^
-inoremap <C-h> <esc>0^i
-
-nnoremap <leader>ev :e ~/.vimrc<cr>
-nnoremap <leader>es :so ~/.vimrc<cr>
 nnoremap <leader>q :bd<cr>
 nnoremap <leader>Q :w<cr>:bd<cr>
 
@@ -253,16 +242,19 @@ nnoremap <leader>t :NERDTreeToggle<cr>
 
 inoremap <C-t> <esc>g_a
 inoremap ;; <esc>g_a;
-inoremap ;. <esc>g_a.
-inoremap ;: <esc>g_a:
-inoremap ;, <esc>g_a,
-inoremap ;+ <esc>g_a + 
-inoremap ;- <esc>g_a - 
-inoremap ;{ <esc>g_a {<cr>}<esc>O
+inoremap {{ <esc>g_a {<cr>}<esc>O
 
 inoremap jk <esc>
 inoremap jj <esc>g_a
 inoremap JJ <esc>o
 
 inoremap <C-CR> <C-o>o
-"inoremap <S-C-CR> <C-o>O
+
+command! VimrcSource source ~/.vimrc
+command! VimrcEdit e ~/.vimrc
+
+autocmd FileType gitcommit setlocal spell spelllang=en_us
+
+if filereadable(expand("~/.dotfiles/local/vimrc"))
+    source ~/.dotfiles/local/vimrc
+endif
