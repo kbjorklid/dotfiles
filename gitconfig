@@ -1,5 +1,7 @@
 [alias]
     uncommit = reset --soft HEAD^
+    co = checkout
+    cob = checkout -b
 [push]
     default = matching
 [include]
