@@ -201,6 +201,22 @@ function! VisualFindAndReplaceWithSelection() range
     :'<,'>OverCommandLine s/
 endfunction
 
+function! VisualModeDisable()
+    nnoremap V :echo "Visual Mode disabled (Enable: :VisualModeEnable)"<cr>
+    nnoremap v :echo "Visual Mode disabled (Enable: :VisualModeEnable)"<cr>
+endfunction
+
+function! VisualModeEnable()
+    nunmap V
+    nunmap v
+endfunction
+
+command! VisualModeEnable call VisualModeEnable()
+command! VisualModeDisable call VisualModeDisable()
+" Make stuff harder
+VisualModeDisable
+
+
 nnoremap <Leader>r :call VisualFindAndReplace()<cr>
 xnoremap <Leader>r :call VisualFindAndReplaceWithSelection()<cr>
 
