@@ -7,33 +7,45 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
+" General settings
 Plugin 'tpope/vim-sensible'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'osyo-manga/vim-over'
+Plugin 'bling/vim-airline'
+"Find / browse files
 Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'terryma/vim-expand-region'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rking/ag.vim'
+"File manipulation
+Plugin 'danro/rename.vim'
+"GIT
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'mephux/vim-jsfmt'
-Plugin 'rstacruz/sparkup'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'SirVer/ultisnips'
+"Misc editing
+Plugin 'osyo-manga/vim-over'
+Plugin 'terryma/vim-expand-region'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
-Plugin 'junegunn/vim-peekaboo'
-Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-commentary'
+"Javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'Shutnik/jshint2.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'mephux/vim-jsfmt'
+Plugin 'mxw/vim-jsx'
+"Markup languages
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'rstacruz/sparkup'
 Plugin 'othree/html5.vim'
 Plugin 'docunext/closetag.vim'
+"Completion, templates...
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'SirVer/ultisnips'
+"Misc
+Plugin 'junegunn/vim-peekaboo'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'rking/ag.vim'
+"Color schemes
 Plugin 'ciaranm/inkpot'
 
 call vundle#end()
@@ -43,6 +55,8 @@ let mapleader="\<Space>"
 
 
 " === PLUGIN SETTINGS
+" --- vim-jsx
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " --- ControlP
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = '\v[\/]((te?mp|node_modules|target|dist|bower_modules)|(\.(swp|ico|git|svn)))$'
@@ -52,6 +66,9 @@ nnoremap <leader>o :CtrlP<CR>
 " --- Expand Region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_regin_shrink)
+
+" --- Closetag
+autocmd Filetype jsx source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
 
 " --- Airline
 let g:airline_theme='powerlineish'
@@ -152,15 +169,12 @@ set formatoptions=qrn1
 set colorcolumn=121
 set foldmethod=syntax
 set foldlevelstart=20
-set lcs=trail:·
-set list
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
 
 if has('gui_running')
   syntax enable
   colorscheme solarized
-  "let g:solarized_visibility = "high"
   let g:solarized_contrast = "high"
   set background=dark
   highlight clear SignColumn
@@ -266,10 +280,19 @@ inoremap JJ <esc>o
 
 inoremap <C-CR> <C-o>o
 
+nnoremap <leader>d :TernDef<cr>
+nnoremap <leader>D :TernRename<cr>
+
 command! VimrcSource source ~/.vimrc
 command! VimrcEdit e ~/.vimrc
 
 autocmd FileType gitcommit setlocal spell spelllang=en_us
+
+
+" Testing...
+" nmap dar /[{}]<cr>da{:noh<cr>dd
+" nmap dir /[{}]<cr>di{:noh<cr>
+
 
 if filereadable(expand("~/.dotfiles/local/vimrc"))
     source ~/.dotfiles/local/vimrc

@@ -1,12 +1,35 @@
 #!/bin/zsh
 
 c () {
-    if [[ $# -eq 1 ]]; then
-        cd "$PROJECTS/$1"
-    elif [[ -f $HOME/.current-project ]]; then
+    if [[ $# -eq 0 && -f $HOME/.current-project ]]; then
         local project=`cat $HOME/.current-project`
         if [[ -d $project ]]; then
             cd "$project"
+        else
+            echo "Not a directory: $project"
         fi
+    elif [[ $# -eq 1 ]]; then
+        case "$1" in
+            'dotfiles')
+                cd $HOME/.dotfiles
+                ;;
+            '-d')
+                pwd > $HOME/.current-project
+                ;;
+            '-s')
+                cat $HOME/.current-project
+                ;;
+            *)
+                cd "$PROJECTS/$1"
+                ;;
+        esac
+    elif [[ $# -eq 2 ]]; then
+        case "$1" in
+            '-d')
+                echo "$PROJECTS/$2" > $HOME/.current-project
+                ;;
+            *)
+                echo "Not sure what to do"
+        esac
     fi
 }
