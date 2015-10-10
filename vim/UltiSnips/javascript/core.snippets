@@ -1,0 +1,31 @@
+snippet function "function myfunc(params) { ... " w
+function $1($2) {
+	$0
+}
+endsnippet
+
+snippet function "property : myfunc(params) { ... "
+${1:property} : function ($2) {
+	$0
+}
+endsnippet
+
+snippet consoleLog "console.log(..." w
+console.log('$1');
+endsnippet
+
+snippet consoleWarn "console.warn(..." w
+console.warn('$1');
+endsnippet
+
+snippet self "var self = this;"
+var self = this;
+endsnippet
+
+snippet returnf "return false;"
+return false;
+endsnippet
+
+snippet returnt "return true;"
+return true;
+endsnippet
