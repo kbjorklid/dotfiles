@@ -2,10 +2,6 @@ snippet require "var thing = require('thing')"
 var $1 = require('${0:$1}');
 endsnippet
 
-snippet "^\s*require" "var x = require('x')" r
-var $1 = require('${0:$1}');
-endsnippet
-
 snippet "^(\s*var\s)([^\s]+)(\s*=\s*)require" "require('x')" r
 `!p
 snip.rv = match.group(1) + match.group(2) + match.group(3) + "require('"
