@@ -2,10 +2,13 @@
     uncommit = reset --soft HEAD^
     co = checkout
     cob = checkout -b
+    ls = log --oneline
 [push]
     default = matching
 [include]
     path = .dotfiles/gitconfig.local
+[core]
+    editor = vim
 
 
 # vim: set ft=gitconfig :
