@@ -1,6 +1,19 @@
+
 snippet function "JS function" w
-function ($1) {
-	$2
+function $1($2) {
+	$0
+}
+endsnippet
+
+snippet fun "JS function" w
+function $1($2) {
+	$0
+}
+endsnippet
+
+snippet pfun "JS Object method"
+${1:property} : function ($2) {
+	$0
 }
 endsnippet
 
@@ -8,12 +21,16 @@ snippet consoleLog "console.log(..." w
 console.log('$1');
 endsnippet
 
+snippet consoleWarn "console.warn(..." w
+console.warn('$1');
+endsnippet
+
 snippet clog "console.log(..." w
 console.log('$1');
 endsnippet
 
-snippet .then ".then(function (..." w
-.then(function ($1) {
+snippet then ".then(function (..." w
+then(function ($1) {
 	$2
 })
 endsnippet
@@ -22,38 +39,142 @@ snippet self "var self = this;"
 var self = this;
 endsnippet
 
-# ES6
-snippet import "import ... from ..."
-import $1 from '${1/\w+/\l$0/}';
+snippet returnf "return false;"
+return false;
+endsnippet
+
+snippet returnt "return true;"
+return true;
+endsnippet
+
+#== QUnit
+snippet test "QUnit: test(...)" b
+test('$1', function (assert) {
+	$0
+});
 endsnippet
 
 #== EMBER
 
-snippet EmComputed "Ember.coputed(..."
+snippet getToVar "var item = this.get('item');"
+var $1 = ${2:this}.get('${0:$1}');
+endsnippet
+
+snippet import "import ... from ..." !
+import $1 from '${0:`!p
+if t[1] == "DS":
+    snip.rv='ember-data'
+elif t[1] == "Ember":
+    snip.rv='ember'
+`}';
+endsnippet
+
+snippet EmComputed "Ember.computed(..."
 ${1:property} : Ember.computed(
 	'$2',
 	'$3',
 	function (key, value) {
-		return $4;
+		return $0;
 	}
 )
 endsnippet
 
 snippet EmIsEmpty "Ember.isEmpty(..." w
-Ember.isEmpty($1)
+Ember.isEmpty($0)
 endsnippet
 
 snippet EmRoute "export default Ember.Route..."
 export default Ember.Route.extend({
-	$1
+	$0
 });
 endsnippet
 
-snippet actions "Ember actions definition"
+snippet EmActions "Ember actions definition"
 actions : {
 	${1:name} : function () {
-		$2
+		$0
 	}
 }
 endsnippet
 
+# REACT
+
+# snippet tplAltStore "Alt Store template"
+# import alt from '$1';
+# import '$2Actions' from '$3';
+
+# class $2Store {
+# 	constructor() {
+# 		this.bindActions($2Actions);
+# 		this.${4:${2/\w+/\l$0s/}};
+# 	}
+	
+# 	create(${5:${2/\w+/\l$0/}}) {
+# 		const $4 = this.$4;
+# 		// Initialize $5 here
+
+# 		this.setState({
+# 			$4: $4.concat($5)
+# 		});
+# 	}
+# }
+# endsnippet
+
+snippet render "Simple render method"
+render$1($2) {
+	return (
+		$0
+	);
+}
+endsnippet
+
+snippet constructor-react "Constructor of React component"
+constructor(props) {
+	super(props);
+	$0
+}
+endsnippet
+
+snippet bind-react "Bind method"
+this.$1 = this.$1.bind(this);
+endsnippet
+
+
+# LODASH
+snippet "_.forEach" "_.forEach"
+_.forEach(${1:collection}, function (${2:val}${4/\w/, /}${4:i}) {
+	$0
+});
+endsnippet
+
+# NODE / IO
+snippet require "var thing = require('thing')"
+var $1 = require('${0:$1}');
+endsnippet
+
+snippet "^\s*require" "var x = require('x')" r
+var $1 = require('${0:$1}');
+endsnippet
+
+snippet "^(\s*var\s)([^\s]+)(\s*=\s*)require" "require('x')" r
+`!p
+snip.rv = match.group(1) + match.group(2) + match.group(3) + "require('"
+`${0:`!p
+varname = match.group(2)
+snip.rv = varname[:1].lower() + varname[1:]
+`}');
+endsnippet
+
+snippet bookshelf_model "Bookshelf Model with Registry"
+var bookshelf = require('$1');
+var BaseModel = ${2:'bookshelf.Model'};
+
+var ${3:Model} = BaseModel.extend({
+	tableName: '${4:`!p
+s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', t[3])
+snip.rv = re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower();
+`}'
+
+module.exports = bookshelf.model('$3', $3);
+});
+endsnippet
