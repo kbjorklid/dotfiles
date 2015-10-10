@@ -1,27 +1,63 @@
 #Pure HBS (no html)
-snippet input "{{input value=...}}"
-{{input value=${1:target}}}
+
+snippet each-in "{{#each ...}}"
+{{#each $1 in ${2:${1/^\w+[^s]$/$0s/}}}}
+	$0
+{{/each}}
 endsnippet
 
-snippet action "{{action ...}}"
-{{action '${1:name}'}}
+snippet each-as "{{#each model in |item|}}"
+{{#each ${1:model} as |$2|}}
+	$3
+{{/each}}
 endsnippet
 
-snippet partial "{{partial ...}}"
+snippet input "{{input value=...}}" w
+{{input value=${1:target} $0}}
+endsnippet
+
+snippet action "{{action ...}}" w
+{{action '${1:name}' $0}}
+endsnippet
+
+snippet partial "{{partial ...}}" w
 {{partial '${1:name}'}}
 endsnippet
 
 snippet link-to-block "{{#link-to ..."
 {{#link-to '$1' $2}}
-	$3
+	${VISUAL}$0
 {{/link-to}}
 endsnippet
 
-snippet link-to "{{link-to ..."
-{{link-to $1 '$2' $3}}
+snippet link-to "{{link-to ..." w
+{{link-to ${1:linkText} '$2' $0}}
+endsnippet
+
+snippet view "{{view ..." w
+{{view '$1' content=$2 selection=$0}}
+endsnippet
+
+snippet if "{{#if...}}"
+{{#if $1}}
+	$2
+{{else if $3}}
+	$4
+{{else}}
+	$0
+{{/if}}
+endsnippet
+
+#Font Awesome
+snippet fa "{{fa-icon ...}}" w
+{{fa-icon "$0"}}
 endsnippet
 
 #HTML + HBS
-snippet buttonAction "<button {{action ...}}>..."
-<button {{action '${1:action}'}}>${1/\w+/\u$0/}</button>
+snippet buttonAction "<button {{action ...}}>..." w
+<button {{action '${1:action}'}}>${2:${1/\w+/\u$0/}}</button>
+endsnippet
+
+snippet linkAction "<a ... {{action ..." w
+<a href="#" {{action '$1' $2}}>${0:${1/\w+/\u$0/}}</a>
 endsnippet

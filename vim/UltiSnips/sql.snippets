@@ -1,0 +1,15 @@
+snippet drop "Drop table"
+DROP TABLE ${1:IF EXISTS }$0;
+endsnippet
+
+snippet create "Create table"
+DROP TABLE IF EXISTS $1;
+CREATE TABLE $1 (
+	id SERIAL NOT NULL PRIMARY KEY,
+	$0
+);
+endsnippet
+
+snippet fk "Foreign key"
+	$1_id INTEGER REFERENCES ${2:$1s}(id) ${0:NOT NULL}
+endsnippet
