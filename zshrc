@@ -4,9 +4,11 @@ source $HOME/.dotfiles/env.local.sh
 #Oh My Zsh
 ZSH=$HOME/.oh-my-zsh
 #export ZSH_THEME="candykb"
-export ZSH_THEME="steeef"
-# export ZSH_THEME="bira"
-plugins=(git npm github bower jira web-search)
+#export ZSH_THEME="steeef"
+#export ZSH_THEME="rkj-repos"
+export ZSH_THEME="kb"
+
+plugins=(git hg npm github bower jira web-search)
 source $ZSH/oh-my-zsh.sh
 
 # Source some stuff from under dotfiles

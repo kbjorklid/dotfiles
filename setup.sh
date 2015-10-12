@@ -7,6 +7,7 @@ ln -s $DIR/vimrc ~/.vimrc
 ln -s $DIR/ideavimrc ~/.ideavimrc
 ln -s $DIR/zshrc ~/.zshrc
 ln -s $DIR/candykb.zsh-theme $OHMYZSHDIR/themes
+ln -s $DIR/kb.zsh-theme $OHMYZSHDIR/themes
 ln -s $DIR/vim/colors ~/.vim/colors
 ln -s $DIR/vim/UltiSnips ~/.vim/UltiSnips
 ln -s $DIR/gitconfig ~/.gitconfig
