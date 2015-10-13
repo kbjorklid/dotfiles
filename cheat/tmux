@@ -1,2 +1,8 @@
 C-a c   - new window
-C-a z   - mazimize pane
+C-a ,   - rename window
+C-a f   - find window
+C-a n   - next window
+C-a p   - previous window
+C-a &   - kill window
+C-a w   - list windows
+C-a z   - maximize pane
