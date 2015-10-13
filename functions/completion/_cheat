@@ -1,0 +1,6 @@
+#compdef cheat
+#autoload
+
+_cheat () {
+    _files -W $CHEAT_DIR -/
+}
