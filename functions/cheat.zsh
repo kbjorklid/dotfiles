@@ -1,11 +1,12 @@
 #!/bin/zsh
 
 cheat() {
+    local tag
     if [[ "x$CHEAT_DIR" = "x" ]]; then
         echo "\$CHEAT_DIR not set"
         return
     elif [[ ! -d "$CHEAT_DIR" ]]; then
-        echo "$CHEAT_DIR is not a directory. Please modify the \$CHEAT_DIR variable"
+        echo "$CHEAT_DIR is not a directory. Please check your \$CHEAT_DIR variable"
         return
     fi
 
@@ -32,10 +33,11 @@ cheat() {
             ;;
         '-a')
             if [[ $# -eq 3 ]]; then
-                if [[ ! -f "$CHEAT_DIR/$3" ]]; then
-                    echo "Tag not found: $3. Create it first (cheat -c <tag>)."
+                tag="$CHEAT_DIR/$3"
+                if [[ ! -f "$tag" ]]; then
+                    echo "Tag not found: $3. Create it first (cheat -c $3)."
                 else
-                    echo "$2" >> "$CHEAT_DIR/$3"
+                    echo "$2" >> "$tag"
                 fi
             else
                 echo "Wrong number of arguments: usage: cheat -a <Line to append> <tag>"
@@ -43,33 +45,37 @@ cheat() {
             ;;
         '-k')
             if [[ $# -eq 4 ]]; then
-                if [[ ! -f "$CHEAT_DIR/$4" ]]; then
+                tag="$CHEAT_DIR/$4"
+                if [[ ! -f "$tag" ]]; then
                     echo "Tag not found: $4. Create it first (cheat -c <tag>)."
                 else
-                    echo "$2\t- $3" >> "$CHEAT_DIR/$4"
+                    echo "$2\t- $3" >> "$tag"
                 fi
             else
                 echo "Wrong number of arguments: usage: cheat -k <Key binding> <description> <tag>"
             fi
             ;;
         '-c')
+            tag="$CHEAT_DIR/$2"
             if [[ $# -eq 2 ]]; then
-                touch "$CHEAT_DIR/$2"
+                touch "$tag"
                 echo "Tag $2 created."
             fi
             ;;
         '-h')
-            echo "cheat                                 - list all cheats for all tags"
-            echo "cheat <tag>                           - list all cheats for given tag"
-            echo "cheat <tag> <str>                     - list cheats containing the string for the tag"
-            echo "cheat -l                              - list all tags"
-            echo "cheat -e <tag>                        - edit given tag file"
-            echo "cheat -a <str> <tag>                  - Append the given string to tag file"
-            echo "cheat -k <keybinding> <desc> <tag>    - Append descirption for the given keybinding to tag file"
-            echo "cheat -c <tag>                        - Create tag"
+            echo "cheat                - list all cheats"
+            echo "cheat <tag>          - list cheats for tag"
+            echo "cheat <tag> <str>    - list cheats for tag, filter by string"
+            echo "cheat -l             - list all tags"
+            echo "cheat -e <tag>       - edit given tag file"
+            echo "cheat -c <tag>       - Create tag"
+            echo "cheat -a <str> <tag> - Append the given string for tag"
+            echo "cheat -k <keybinding> <desc> <tag>"
+            echo "                     - Append documentation for keybinding for tag"
             ;;
         *)
-            if [[ ( $# -eq 1 || $# -eq 2 ) && ( ! -f "$CHEAT_DIR/$1" ) ]]; then
+            tag="$CHEAT_DIR/$1"
+            if [[ ( $# -eq 1 || $# -eq 2 ) && ( ! -f "@tag" ) ]]; then
                 echo "Tag not found: $1"
                 return;
             fi
@@ -78,13 +84,13 @@ cheat() {
 }
 
 _cat_cheat() {
-            if [[ $# -eq 1 ]]; then
-                cat "$CHEAT_DIR/$1"
-            elif [[ $# -eq 2 ]]; then
-                cat "$CHEAT_DIR/$1" | grep "$2"
-            else
-                echo "Expected one or two parameters"
-            fi
+    if [[ $# -eq 1 ]]; then
+        cat "$CHEAT_DIR/$1"
+    elif [[ $# -eq 2 ]]; then
+        cat "$CHEAT_DIR/$1" | grep "$2"
+    else
+        echo "Expected one or two parameters"
+    fi
 }
 
 _edit_cheat() {

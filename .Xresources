@@ -43,7 +43,7 @@ urxvt*matcher.button:  1
 ! urxvt*boldFont:    -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
 !  - use xft for drawing fonts
 !urxvt*font:       xft:Courier 10 pitch:11
-urxvt*font:        xft:Inconsolata:size=9
+urxvt*font:        xft:Inconsolata:size=13
 !urxvt*font:         xft:Droid Sans Mono:size=10
 
 

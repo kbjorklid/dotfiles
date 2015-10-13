@@ -10,3 +10,4 @@ C-a +   - Break pane to window
 C-a -   - Restore pane from window
 C-a q   - Show pane numbers
 C-a t	- Big clock
+C-a C-h, C-j... - Resize pane
