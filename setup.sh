@@ -13,6 +13,7 @@ ln -s $DIR/vim/UltiSnips ~/.vim/UltiSnips
 ln -s $DIR/gitconfig ~/.gitconfig
 ln -s $DIR/.Xresources ~/.Xresources
 ln -s $DIR/npmrc ~/.npmrc
+ln -s $DIR/tmux.conf ~/.tmux.conf
 ln -s $DIR/awesome/rc.lua $AWESOMEDIR/rc.lua
 ln -s $DIR/awesome/runonce.lua $AWESOMEDIR/runonce.lua
 ln -s $DIR/awesome/volume.lua $AWESOMEDIR/volume.lua
