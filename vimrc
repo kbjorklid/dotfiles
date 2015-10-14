@@ -47,6 +47,7 @@ Plugin 'junegunn/vim-peekaboo'
 Plugin 'junegunn/vim-easy-align'
 "Color schemes
 Plugin 'ciaranm/inkpot'
+Plugin 'chriskempson/base16-vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -143,7 +144,6 @@ set scrolloff=3
 set showmode
 set hidden
 set wildmode=list:longest
-set cursorline
 set ttyfast               " fast scrolling...
 set relativenumber
 set nu
@@ -178,19 +178,23 @@ if has('gui_running')
   let g:solarized_contrast = "high"
   set background=dark
   highlight clear SignColumn
+  set cursorline
 
   set guioptions=aem
   set lines=40                " 40 lines of text instead of 24
   set columns=126
-  "set guifont=Courier\ 10\ Pitch\ 11
+  "set guifont=Courier\ 10\ Pitch\ 11 
   "set guifont=Monospace\ 11
   set guifont=Inconsolata\ 12
 else
   set t_Co=256
+  set nocursorline
   syntax on
   set background=dark
   "colorscheme molokai
-  colorscheme inkpot
+  "colorscheme inkpot
+  let base16colorspace=256
+  colorscheme base16-default
 endif
 
 

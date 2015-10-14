@@ -19,6 +19,9 @@ for file in $HOME/.dotfiles/functions/*; do
     fi
 done
 
+#Base16 colors, see https://github.com/chriskempson/base16
+source /home/kalleb/.dotfiles/base16-shell/base16-default.dark.sh
+
 # History
 export HISTIGNORE="ls:cd:cd ~:pwd"
 

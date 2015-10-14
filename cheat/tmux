@@ -10,3 +10,6 @@ C-a -   - Restore pane from window
 C-a q   - Show pane numbers
 C-a C-h, C-j... - Resize pane
 C-a [   - Enter scroll mode
+C-a w	- List windows
+Attach to a session: tmux attach
+C-a x	- Kill pane

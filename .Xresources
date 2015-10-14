@@ -18,7 +18,7 @@ Xft.lcdfilter: lcddefault
 
 
 ! General
-!urxvt*termName:  rxvt-256color
+urxvt*termName:  xterm-256color
 urxvt*loginShell:         true
 urxvt*scrollBar:         false
 urxvt*secondaryScroll:    true
@@ -48,36 +48,85 @@ urxvt*font:        xft:Inconsolata:size=13
 
 
 !  - cursor
-urxvt*cursorColor: #DCDCCC
+!urxvt*cursorColor: #DCDCCC
 !  - pseudo transparency
 !urxvt*shading:    50
 !urxvt*transparent:true
 !
 !  - color scheme
-urxvt.background:  #000000
-urxvt.foreground:  #EBEBFF
-! black + red
-!urxvt*color0:     #3f3f3f
-urxvt*color0:      #000000
-urxvt*color1:      #e01010
-! green + yellow
-urxvt*color2:      #00AA00
-urxvt*color3:      #FFFF00
-! blue + purple
-urxvt*color4:      #112037
-urxvt*color5:      #A020F0
-! cyan + white
-urxvt*color6:      #5B5BC7
-urxvt*color7:      #fefefe
-! bright-black + bright-red
-urxvt*color8:      #6a6a6a
-urxvt*color9:      #FF5555
-! bright-green + bright-yellow
-urxvt*color10:     #90EE90
-urxvt*color11:     #ffff2f
-! bright-blue + bright-purple
-urxvt*color12:     #84aeb4
-urxvt*color13:     #e628ba
-! bright-cyan + bright-white
-urxvt*color14:     #7D7DFB
-urxvt*color15:     #ffffff
+!urxvt.background:  #000000
+!urxvt.foreground:  #EBEBFF
+!! black + red
+!!urxvt*color0:     #3f3f3f
+!urxvt*color0:      #000000
+!urxvt*color1:      #e01010
+!! green + yellow
+!urxvt*color2:      #00AA00
+!urxvt*color3:      #FFFF00
+!! blue + purple
+!urxvt*color4:      #112037
+!urxvt*color5:      #A020F0
+!! cyan + white
+!urxvt*color6:      #5B5BC7
+!urxvt*color7:      #fefefe
+!! bright-black + bright-red
+!urxvt*color8:      #6a6a6a
+!urxvt*color9:      #FF5555
+!! bright-green + bright-yellow
+!urxvt*color10:     #90EE90
+!urxvt*color11:     #ffff2f
+!! bright-blue + bright-purple
+!urxvt*color12:     #84aeb4
+!urxvt*color13:     #e628ba
+!! bright-cyan + bright-white
+!urxvt*color14:     #7D7DFB
+!urxvt*color15:     #ffffff
+
+! Base16 Default
+! Scheme: Chris Kempson (http://chriskempson.com)
+
+#define base00 #181818
+#define base01 #282828
+#define base02 #383838
+#define base03 #585858
+#define base04 #b8b8b8
+#define base05 #d8d8d8
+#define base06 #e8e8e8
+#define base07 #f8f8f8
+#define base08 #ab4642
+#define base09 #dc9656
+#define base0A #f7ca88
+#define base0B #a1b56c
+#define base0C #86c1b9
+#define base0D #7cafc2
+#define base0E #ba8baf
+#define base0F #a16946
+
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
