@@ -2,3 +2,4 @@ vim/bundle/
 vim/bundle/*
 *.local.*
 *.local
+cheat/soikea

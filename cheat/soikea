@@ -1,4 +1,0 @@
-OpenVPN:
-  cd ~/vpn
-  sudo openvpn soikeavpn.ovpn
-Genelec ssh tunnel: ssh genelec

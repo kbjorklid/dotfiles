@@ -25,6 +25,9 @@ export HISTIGNORE="ls:cd:cd ~:pwd"
 #Cheat function
 CHEAT_DIR=$HOME/.cheat
 
+# Make tmux window names permanent
+DISABLE_AUTO_TITLE=true
+
 # Misc config
 bindkey '^[OA' history-beginning-search-backward 
 bindkey '^[OB' history-beginning-search-forward 
@@ -35,4 +38,3 @@ setopt auto_pushd
 fpath=(~/.dotfiles/functions/completion $fpath)
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
-

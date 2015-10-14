@@ -4,10 +4,9 @@ C-a f   - find window
 C-a n   - next window
 C-a p   - previous window
 C-a &   - kill window
-C-a w   - list windows
 C-a z   - maximize pane (zoom)
 C-a +   - Break pane to window
 C-a -   - Restore pane from window
 C-a q   - Show pane numbers
-C-a t	- Big clock
 C-a C-h, C-j... - Resize pane
+C-a [   - Enter scroll mode
