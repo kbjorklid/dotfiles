@@ -75,7 +75,7 @@ cheat() {
             ;;
         *)
             tag="$CHEAT_DIR/$1"
-            if [[ ( $# -eq 1 || $# -eq 2 ) && ( ! -f "@tag" ) ]]; then
+            if [[ ( $# -eq 1 ) && ( ! -f "$tag" ) ]]; then
                 echo "Tag not found: $1"
                 return;
             fi
