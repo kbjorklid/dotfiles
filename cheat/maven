@@ -1,0 +1,2 @@
+-Dmaven.test.skip=true
+-am -pl <modules>  - build (sub)modules and deps

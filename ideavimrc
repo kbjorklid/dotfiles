@@ -1,3 +1,6 @@
+set relativenumber
+
+
 inoremap <C-t> <esc>A
 inoremap ;; <esc>A;
 inoremap ;. <esc>A.
