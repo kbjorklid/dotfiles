@@ -1,0 +1,1 @@
+hg forget /some/file.txt - removes the file from version control

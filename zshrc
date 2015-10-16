@@ -41,3 +41,4 @@ setopt auto_pushd
 fpath=(~/.dotfiles/functions/completion $fpath)
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
+
