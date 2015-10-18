@@ -48,7 +48,6 @@ _gem() {
         sudo gem install "$1"
     else
         echo "[INFO] Already intalled; updating with gem: $1"
-        sudo gem update "$1"
     fi
 }
 
@@ -72,23 +71,26 @@ _gitclone() {
         echo "[INFO] cloned: $info"
     fi
 }
-# ln -s $DIR/vimrc ~/.vimrc
-_link "vimrc", ".vimrc"
-_link "ideavimrc", ".vimrc"
-_link "zshrc", ".zshrc"
-_link "kb.zsh-theme", "$OHMYZSHDIR/themes/kb.zsh-theme"
-_link "vim/colors", ".vim/colors"
-_link "vim/UltiSnips", ".vim/UltiSnips"
-_link "gitconfig", ".gitconfig"
-_link ".Xresources", ".Xresources"
-_link "npmrc", ".npmrc"
-_link "tmux.conf", ".tmux.conf"
-_link "cheat", ".cheat"
-_copy "env.template.sh", "$DIR/env.local.sh"
-_copy "gitconfig.template", "$DIR/gitconfig.local"
+# This is just silly.
+_link "vimrc" ".vimrc"
+_link "ideavimrc" ".vimrc"
+_link "zshrc" ".zshrc"
+_link "kb.zsh-theme" "$OHMYZSHDIR/themes/kb.zsh-theme"
+_link "vim/colors" ".vim/colors"
+_link "vim/UltiSnips" ".vim/UltiSnips"
+_link "gitconfig" ".gitconfig"
+_link ".Xresources" ".Xresources"
+_link "npmrc" ".npmrc"
+_link "tmux.conf" ".tmux.conf"
+_link "cheat" ".cheat"
+_link ".tmuxinator" ".tmuxinator"
+_copy "env.template.sh" "$DIR/env.local.sh"
+_copy "gitconfig.template" "$DIR/gitconfig.local"
 _gitclone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
 _gitclone "https://github.com/gmarik/vundle.git" "$HOME/.vim/bundle/vundle"
 _gem "tmuxinator"
+
+sudo gem update
 
 # _link "awesome/rc.lua", "$AWESOMEDIR/rc.lua"
 # _link "awesome/runconce.lua", "$AWESOMEDIR/runonce.lua"

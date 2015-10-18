@@ -3,3 +3,4 @@ vim/bundle/*
 *.local.*
 *.local
 cheat/soikea
+!.tmuxinator/personal.yml
