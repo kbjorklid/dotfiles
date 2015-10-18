@@ -1,19 +1,19 @@
-PREFIX c   - new window
-PREFIX ,   - rename window
-PREFIX f   - find window
-PREFIX n   - next window
-PREFIX p   - previous window
-PREFIX &   - kill window
-PREFIX z   - maximize pane (zoom)
-PREFIX +   - Break pane to window
-PREFIX -   - Restore pane from window
-PREFIX q   - Show pane numbers
+PREFIX c           - new window
+PREFIX ,           - rename window
+PREFIX f           - find window
+PREFIX n           - next window
+PREFIX p           - previous window
+PREFIX &           - kill window
+PREFIX z           - maximize pane (zoom)
+PREFIX +           - Break pane to window
+PREFIX -           - Restore pane from window
+PREFIX q           - Show pane numbers
 PREFIX C-h, C-j... - Resize pane
-PREFIX [   - Enter scroll mode
-PREFIX w	- List windows
-PREFIX x	- Kill pane
-PREFIX $	- Rename current session
-PREFIX ( or )	- Previous / next session
-PREFIX s	- Choose session from list
-PREFIX L	- last session
+PREFIX [           - Enter scroll mode
+PREFIX w           - List windows
+PREFIX x           - Kill pane
+PREFIX $           - Rename current session
+PREFIX ( or )	   - Previous / next session
+PREFIX s           - Choose session from list
+PREFIX L           - last session
 Attach to a session: tmux attach

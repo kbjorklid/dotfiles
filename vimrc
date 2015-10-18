@@ -27,6 +27,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-commentary'
+Plugin 'majutsushi/tagbar'
 "Javascript
 Plugin 'pangloss/vim-javascript'
 Plugin 'Shutnik/jshint2.vim'
@@ -116,6 +117,9 @@ nmap <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 let g:EasyMotion_keys='fgdsatrevcxwyopbnmiulkhj'
+
+" --- Tab Bar
+nmap <Leader>b :TagbarToggle<cr>
 
 " --- DelimitMate
 let delimitMate_expand_cr = 1
