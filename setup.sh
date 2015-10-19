@@ -45,7 +45,7 @@ _gem() {
     local gemtest="`gem list --local | grep $1`"
     if [[ "x$gemtest" == "x" ]]; then
         echo "[INFO] Installing with gem: $1"
-        sudo gem install "$1"
+        gem install "$1"
     else
         echo "[INFO] Already intalled; updating with gem: $1"
     fi
@@ -90,7 +90,7 @@ _gitclone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
 _gitclone "https://github.com/gmarik/vundle.git" "$HOME/.vim/bundle/vundle"
 _gem "tmuxinator"
 
-sudo gem update
+gem update
 
 # _link "awesome/rc.lua", "$AWESOMEDIR/rc.lua"
 # _link "awesome/runconce.lua", "$AWESOMEDIR/runonce.lua"
