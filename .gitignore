@@ -4,4 +4,4 @@ vim/bundle/*
 *.local
 cheat/soikea
 completer.hist
-!.tmuxinator/personal.yml
+.tmuxinator/work.yml

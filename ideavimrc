@@ -12,3 +12,5 @@ inoremap ;- <esc>A -
 inoremap jk <esc>
 
 inoremap <C-CR> <C-o>o
+
+nnoremap 0 0^
