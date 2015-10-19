@@ -1,6 +1,9 @@
 # Source environment specific things
 source $HOME/.dotfiles/env.local.sh
 
+#General setup
+export EDITOR=vim
+
 #Oh My Zsh
 ZSH=$HOME/.oh-my-zsh
 #export ZSH_THEME="candykb"
@@ -29,7 +32,7 @@ export HISTIGNORE="ls:cd:cd ~:pwd"
 CHEAT_DIR=$HOME/.cheat
 
 # Make tmux window names permanent
-DISABLE_AUTO_TITLE=true
+export DISABLE_AUTO_TITLE=true
 
 # Misc config
 bindkey '^[OA' history-beginning-search-backward 
