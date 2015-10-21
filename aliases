@@ -1,4 +1,5 @@
 alias xo=xdg-open
 alias sz=source $HOME/.zshrc
 alias chrome=google-chrome-stable
+alias mvnci=mvn clean install
 

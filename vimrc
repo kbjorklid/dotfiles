@@ -287,11 +287,13 @@ inoremap {{ <esc>g_a {<cr>}<esc>O
 inoremap jk <esc>
 inoremap jj <esc>g_a
 inoremap JJ <esc>o
-
 inoremap <C-CR> <C-o>o
 
 nnoremap <leader>d :TernDef<cr>
 nnoremap <leader>D :TernRename<cr>
+
+" Go to last change point
+nnoremap <leader>i `.
 
 command! VimrcSource source ~/.vimrc
 command! VimrcEdit e ~/.vimrc
