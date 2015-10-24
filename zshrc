@@ -45,3 +45,9 @@ fpath=(~/.dotfiles/functions/completion $fpath)
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
 
+# Node version manager
+NVM_DIR="/home/kalleb/.nvm"
+if [[ -d "$NVM_DIR" ]]; then
+    export NVM_DIR
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+fi

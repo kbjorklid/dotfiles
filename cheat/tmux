@@ -16,4 +16,5 @@ PREFIX $           - Rename current session
 PREFIX ( or )	   - Previous / next session
 PREFIX s           - Choose session from list
 PREFIX L           - last session
+PREFIX d           - detach from current session
 Attach to a session: tmux attach
