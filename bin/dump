@@ -51,10 +51,10 @@ def move_files(files, target_dir):
         file_basename = os.path.basename(from_file)
         to_file = os.path.join(target_dir, file_basename)
         print(from_file + "  =>  " + to_file)
-        if os.path.exists(to_file):
-            print("  Cannot move: target file exists")
-        elif not os.path.exists(from_file):
+        if not os.path.exists(from_file):
             print("  Cannot move: source file does not exist")
+        elif os.path.exists(to_file):
+            print("  Cannot move: target file exists")
         elif simulate:
             print("  SIMULATE ONLY")
         else:
@@ -72,28 +72,41 @@ def get_shelf_file():
     return shelve.open(shelve_file_path)
 
 parser = argparse.ArgumentParser(description='Move files to dump directory')
-parser.add_argument("-s", "--suffix", dest="suffix", help="suffix for the created subdirectory")
-parser.add_argument("-n", "--note", action="store_true", help="Add dump note afterwards")
-parser.add_argument("-p", "--previous", action="store_true", help="Use previous subdir")
-parser.add_argument("--show-previous", dest="showprevious", action="store_true", help="Show the previous directory")
-parser.add_argument("files", nargs="+")
+subparsers = parser.add_subparsers(help="Commands", dest="subparser_name")
+
+parser_dump_newdir = subparsers.add_parser('new', help="Dump to a new directory")
+parser_dump_newdir.add_argument("-s", "--suffix", dest="suffix", help="suffix for the created subdirectory")
+parser_dump_newdir.add_argument("-n", "--note", action="store_true", help="Add dump note afterwards")
+parser_dump_newdir.add_argument("files", nargs="+")
+
+parser_dump_prevdir = subparsers.add_parser('prev', help="Dump to the previous directory")
+parser_dump_prevdir.add_argument("-n", "--note", action="store_true", help="Add dump note afterwards")
+parser_dump_prevdir.add_argument("files", nargs="+")
+
+parser_show_prevdir = subparsers.add_parser('showprev', help="Show previous dump dir")
+
 args = parser.parse_args()
 
-if args.showprevious:
+command = args.subparser_name
+
+if command == "showprev":
     shelf_file = get_shelf_file()
     print(shelf_file['previous_dir'])
     shelf_file.close()
-    sys.exit();
+    sys.exit()
 
 the_dir = None
-if args.previous:
+if command == "prev":
     shelf_file = get_shelf_file()
     the_dir = shelf_file['previous_dir']
     shelf_file.close()
     if not os.path.isdir(the_dir):
         raise Exception('The previous directory does not exist')
-else:
+elif command == "new":
     the_dir = get_target_dir(args.suffix)
+else:
+    print("Need a command, one of: new, prev, showprev")
+    sys.exit()
 
 print("Target dir: " + the_dir)
 move_files(args.files, the_dir)
