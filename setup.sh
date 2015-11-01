@@ -85,11 +85,14 @@ _link "tmux.conf" ".tmux.conf"
 _link "cheat" ".cheat"
 _link ".tmuxinator" ".tmuxinator"
 _link "pylintrc" ".pylintrc"
+mkdir -p "$HOME/.config/nvim"
+_link "nvimrc" "$HOME/.config/nvim/init.vim"
 _copy "env.template.sh" "$DIR/env.local.sh"
 _copy "gitconfig.template" "$DIR/gitconfig.local"
 _gitclone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
 _gitclone "https://github.com/gmarik/vundle.git" "$HOME/.vim/bundle/vundle"
 _gem "tmuxinator"
+
 
 gem update
 
