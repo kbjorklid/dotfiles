@@ -34,7 +34,7 @@ windows:
         layout: ab7e,151x41,0,0[151x36,0,0,4,151x4,0,37,5]
         panes:
             - vim
-            - #empty
+            - if [[ -d ~/.nvm ]]; then; nvm use stable; fi
     - devserver:
         layout: main-vertical
         panes:

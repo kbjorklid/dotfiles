@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+
+import os, datetime, sys, argparse
+from subprocess import call
+
+simulate = False
+
+def dump_dir_path():
+    dump_dir = os.environ.get('DUMP_DIR')
+    if not dump_dir:
+        home_dir = os.environ.get('HOME')
+        if not home_dir:
+            raise Exception('Cannot guess dump dir location: please set DUMP_DIR variable.')
+        dump_dir = os.path.join(home_dir, 'dump')
+    if not os.path.isabs(dump_dir):
+        raise Exception('Dumpdir is not absolute: "' + dump_dir + '"')
+    if not os.path.isdir(dump_dir):
+        raise Exception('Directory "' + dump_dir + '" does not exist or is not a directory')
+    return dump_dir
+
+def subdump_prefix():
+    dt = datetime.datetime.now()
+    return str(dt.year) + "-" + str(dt.month) + "-" + str(dt.day)
+
+
+def subdump_dir_basename(suffix):
+    result = subdump_prefix()
+    if suffix:
+        result += '-' + suffix
+    return result
+
+def make_unique(dir_path):
+    if not os.path.exists(dir_path):
+        return dir_path
+    for i in range(1, 1000):
+        candidate = dir_path + "-" + str(i)
+        if not os.path.exists(candidate):
+            return candidate
+    raise Exception('Could not make dir unique')
+
+def get_target_dir(suffix):
+    path = dump_dir_path()
+    basename = subdump_dir_basename(suffix)
+    target = os.path.join(path, basename)
+    return make_unique(target)
+
+def move_files(files, target_dir):
+    target_dir_exists = os.path.exists(target_dir)
+    for file_arg in files:
+        from_file = os.path.abspath(file_arg)
+        file_basename = os.path.basename(from_file)
+        to_file = os.path.join(target_dir, file_basename)
+        print(from_file + "  =>  " + to_file)
+        if os.path.exists(to_file):
+            print("  Cannot move: target file exists")
+        elif not os.path.exists(from_file):
+            print("  Cannot move: source file does not exist")
+        elif simulate:
+            print("  SIMULATE ONLY")
+        else:
+            # Only create target dir once we're sure it'll have some content:
+            if not target_dir_exists:
+                os.makedirs(target_dir)
+                target_dir_exists = True
+            os.rename(from_file, to_file)
+
+parser = argparse.ArgumentParser(description='Move files to dump directory')
+parser.add_argument("-s", "--suffix", dest="suffix", help="suffix for the created subdirectory")
+parser.add_argument("-n", "--note", action="store_true", help="Add dump note afterwards")
+parser.add_argument("files", nargs="+")
+args = parser.parse_args()
+
+if len(args.files) == 0:
+    print("Expected files as arguments")
+else:
+    the_dir = get_target_dir(args.suffix)
+    print("Target dir: " + the_dir)
+    move_files(args.files, the_dir)
+    if not simulate and args.note and os.path.isdir(the_dir):
+        editor = os.environ.get('EDITOR')
+        if not editor:
+            editor = 'vim'
+        notes_path = os.path.join(the_dir, 'dump_notes.txt')
+        call([editor, notes_path])
+
+
