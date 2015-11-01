@@ -46,6 +46,7 @@ Plugin 'SirVer/ultisnips'
 "Misc
 Plugin 'junegunn/vim-peekaboo'
 Plugin 'junegunn/vim-easy-align'
+Bundle 'scrooloose/syntastic'
 "Color schemes
 Plugin 'ciaranm/inkpot'
 Plugin 'chriskempson/base16-vim'
@@ -57,6 +58,11 @@ let mapleader="\<Space>"
 
 
 " === PLUGIN SETTINGS
+" --- syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 " --- vim-jsx
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " --- ControlP
@@ -74,18 +80,21 @@ autocmd Filetype jsx source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
 
 " --- Airline
 let g:airline_theme='powerlineish'
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#flags = 'f'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_z=''
-function! AirlineInit()
-    let g:airline_section_a = airline#section#create(['mode',' ','branch'])
-    let g:airline_section_b = airline#section#create_left(['ffenc','hunks','%f'])
-    let g:airline_section_c = airline#section#create(['filetype'])
-    let g:airline_section_x = airline#section#create(['%P'])
-    let g:airline_section_y = airline#section#create(['%B'])
-    let g:airline_section_z = airline#section#create_right(['%l', '%c'])
-endfunction
-autocmd VimEnter * call AirlineInit()
+" function! AirlineInit()
+"     let g:airline_section_a = airline#section#create(['mode',' ','branch'])
+"     let g:airline_section_b = airline#section#create_left(['ffenc','hunks','%f'])
+"     let g:airline_section_c = airline#section#create(['filetype'])
+"     let g:airline_section_x = airline#section#create(['%P'])
+"     let g:airline_section_y = airline#section#create(['%B'])
+"     let g:airline_section_z = airline#section#create_right(['%l', '%c'])
+" endfunction
+" autocmd VimEnter * call AirlineInit()
 
 " --- JSHint
 let jshint2_save = 1
@@ -256,7 +265,6 @@ xnoremap <Leader>r :call VisualFindAndReplaceWithSelection()<cr>
 "Bundle 'tpope/vim-unimpaired'
 "Bundle 'othree/javascript-libraries-syntax.vim'
 "Bundle 'scrooloose/nerdcommenter'
-"Bundle 'scrooloose/syntastic'
 "Bundle 'Townk/vim-autoclose'
 "Bundle 'pangloss/vim-javascript'
 "Bundle 'hail2u/vim-css3-syntax'
