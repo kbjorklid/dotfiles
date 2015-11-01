@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, datetime, sys, argparse
+import os, datetime, sys, argparse, shelve
 from subprocess import call
 
 simulate = False
@@ -62,25 +62,46 @@ def move_files(files, target_dir):
             if not target_dir_exists:
                 os.makedirs(target_dir)
                 target_dir_exists = True
+                shelf_file = get_shelf_file()
+                shelf_file['previous_dir'] = target_dir
+                shelf_file.close()
             os.rename(from_file, to_file)
+
+def get_shelf_file():
+    shelve_file_path = os.path.join(dump_dir_path(), ".dumpdata")
+    return shelve.open(shelve_file_path)
 
 parser = argparse.ArgumentParser(description='Move files to dump directory')
 parser.add_argument("-s", "--suffix", dest="suffix", help="suffix for the created subdirectory")
 parser.add_argument("-n", "--note", action="store_true", help="Add dump note afterwards")
+parser.add_argument("-p", "--previous", action="store_true", help="Use previous subdir")
+parser.add_argument("--show-previous", dest="showprevious", action="store_true", help="Show the previous directory")
 parser.add_argument("files", nargs="+")
 args = parser.parse_args()
 
-if len(args.files) == 0:
-    print("Expected files as arguments")
+if args.showprevious:
+    shelf_file = get_shelf_file()
+    print(shelf_file['previous_dir'])
+    shelf_file.close()
+    sys.exit();
+
+the_dir = None
+if args.previous:
+    shelf_file = get_shelf_file()
+    the_dir = shelf_file['previous_dir']
+    shelf_file.close()
+    if not os.path.isdir(the_dir):
+        raise Exception('The previous directory does not exist')
 else:
     the_dir = get_target_dir(args.suffix)
-    print("Target dir: " + the_dir)
-    move_files(args.files, the_dir)
-    if not simulate and args.note and os.path.isdir(the_dir):
-        editor = os.environ.get('EDITOR')
-        if not editor:
-            editor = 'vim'
-        notes_path = os.path.join(the_dir, 'dump_notes.txt')
-        call([editor, notes_path])
+
+print("Target dir: " + the_dir)
+move_files(args.files, the_dir)
+if not simulate and args.note and os.path.isdir(the_dir):
+    editor = os.environ.get('EDITOR')
+    if not editor:
+        editor = 'vim'
+    notes_path = os.path.join(the_dir, 'dump_notes.txt')
+    call([editor, notes_path])
 
 
