@@ -41,17 +41,23 @@ urxvt*secondaryScroll:    true
 urxvt*saveLines:         65535
 urxvt*cursorBlink:       false
 urxvt*urgentOnBell:       true
+urxvt*iso14755:          false
 !urxvt*override-redirect:false
 !urxvt*borderLess:       false
 !urxvt*internalBorder:       0
 !urxvt*externalBorder:       0
 
+
 ! Extensions
 urxvt*perl-lib:        /usr/lib/urxvt/perl/
-urxvt*perl-ext-common: default,matcher,searchable-scrollback
+urxvt*perl-ext-common: default,matcher,searchable-scrollback,clipboard
 urxvt*urlLauncher:     /usr/bin/firefox
 urxvt*matcher.button:  1
 !  - catch ugly URLs
+
+!Copy paste
+URxvt*keysym.C-C: perl:clipboard:copy
+URxvt*keysym.C-V: perl:clipboard:paste
 
 ! Appearance
 !  - use a bitmap font
@@ -100,6 +106,7 @@ urxvt*font:        xft:Inconsolata:size=13
 
 ! Base16 Default
 ! Scheme: Chris Kempson (http://chriskempson.com)
+
 
 
 *.foreground:   base05
