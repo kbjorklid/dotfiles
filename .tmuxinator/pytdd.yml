@@ -1,0 +1,36 @@
+# ~/.tmuxinator/pytdd.yml
+
+name: pytdd
+root: ~/
+
+windows:
+    - main:
+        root: ~/code/py_tdd/superlists
+        layout: 0cb7,191x52,0,0[191x35,0,0,4,191x16,0,36{95x16,0,36,8,95x16,96,36,12}]
+        panes:
+            - vim
+            - #empty
+            - python3 manage.py runserver
+    - snips:
+        root: ~/.dotfiles/vim/UltiSnips/python
+        layout: main-horizontal
+        panes:
+            - vim core.snippets
+    - dotfiles:
+        root: ~/.dotfiles
+        layout: main-horizontal
+        panes:
+            - #empty
+            - #empty
+    - misc:
+        layout: main-vertical
+        panes:
+            - #empty
+
+  # - editor:
+  #     layout: main-vertical
+  #     panes:
+  #       - vim
+  #       - guard
+  # - server: bundle exec rails s
+  # - logs: tail -f log/development.log

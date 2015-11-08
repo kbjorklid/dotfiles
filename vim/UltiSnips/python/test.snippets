@@ -1,0 +1,19 @@
+snippet assertEqual "self.assertEqual(actual, expected)" b
+self.assertEqual(${1:actual}, ${2:expected}, "${3:$1 is not equal to $2}")$0
+endsnippet
+
+snippet assertTrue "self.assertTrue(...)" b
+self.assertTrue($1, "${2:$1 is not true}")$0
+endsnippet
+
+snippet assertIn "self.assertIn(...)" b
+self.assertIn(${1:what}, ${2:where}, "${3:$1 was not found in $2}")$0
+endsnippet
+
+snippet fail "self.fail(...)" b
+self.fail("${1:Finish the test}")$0
+endsnippet
+
+snippet .assertIn "assertIn(...)" i
+assertIn(${1:what}, ${2:where}, "${3:$1 was not found in $2}")$0
+endsnippet

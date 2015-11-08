@@ -18,3 +18,7 @@ PREFIX s           - Choose session from list
 PREFIX L           - last session
 PREFIX d           - detach from current session
 Attach to a session: tmux attach
+To get custom layouts for tmuxinator: tmux list-windows
+PREFIX o           - Open file / link
+PREFIX C-o         - Open file with editor
+PREFIX C-I         - Install plugins

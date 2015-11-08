@@ -61,8 +61,10 @@ let mapleader="\<Space>"
 " --- syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
+let g:syntastic_python_checkers = [ 'pyflakes' ]
 " --- vim-jsx
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " --- ControlP
@@ -123,6 +125,7 @@ imap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "<
 " --- Easymotion
 "map <Leader> <Plug>(easymotion-prefix)
 nmap <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>e <Plug>(easymotion-bd-e)
 nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 let g:EasyMotion_keys='fgdsatrevcxwyopbnmiulkhj'
@@ -293,8 +296,9 @@ inoremap ;; <esc>g_a;
 
 inoremap jk <esc>
 inoremap jj <esc>g_a
-inoremap JJ <esc>o
-inoremap <C-CR> <C-o>o
+inoremap <C-j> <C-o>o
+inoremap <C-k> <C-o>O
+
 
 nnoremap <leader>d :TernDef<cr>
 nnoremap <leader>D :TernRename<cr>
