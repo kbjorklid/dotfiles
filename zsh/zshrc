@@ -1,0 +1,57 @@
+# Source environment specific things
+export DOTFILES=$HOME/.dotfiles
+source $DOTFILES/env/env.local.sh
+export PATH=$PATH:$HOME/.dotfiles/bin
+
+# --- General environment variables ---
+export EDITOR=nvim
+
+# --- Oh My Zsh ---
+ZSH=$HOME/.oh-my-zsh
+export ZSH_THEME="kb"
+plugins=(git npm github jira web-search history-substring-search)
+source $ZSH/oh-my-zsh.sh
+
+# --- .dotfiles ---
+source $DOTFILES/zsh-scripts/detect-os
+source $DOTFILES/zsh-scripts/aliases
+for file in $DOTFILES/zsh-scripts/functions/*; do
+    if [ -f ${file} ]; then
+        source ${file}
+    fi
+done
+
+# --- Colors ---
+#Base16 colors, see https://github.com/chriskempson/base16
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+
+# --- Shell options ---
+# History
+export HISTIGNORE="ls:cd:cd ~:pwd"
+# Make tmux window names permanent
+export DISABLE_AUTO_TITLE=true
+# Bindings
+bindkey '^[OA' history-substring-search-up
+bindkey '^[OB' history-substring-search-down 
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down 
+bindkey -v
+# Autocorrect typos:
+setopt correct
+alias vim='nocorrect nvim'
+setopt inc_append_history
+setopt auto_pushd
+zstyle ':completion:*' menu select
+
+# --- Node version manager ---
+NVM_DIR="/home/kalleb/.nvm"
+if [[ -d "$NVM_DIR" ]]; then
+    export NVM_DIR
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+fi
+
+alias tmux='TERM=xterm-256color tmux'
+alias mux='TERM=xterm-256color tmuxinator'
+

@@ -1,0 +1,10 @@
+# This is the local gitconfig, modifications are not stored to
+# the dotfiles repository. Any configuration done by git is
+# expected to go here.
+#
+# The common part (stored in dotfiles repository) is included.
+[include]
+    # This includes the "unchanged" (common to all envs) gitconfig
+    path = ~/.dotfiles/git/gitconfig_dotfiles
+
+# vim: set ft=gitconfig :

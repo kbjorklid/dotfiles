@@ -1,7 +1,6 @@
 #!/bin/zsh
 DIR="$( cd "$( dirname "$0" )" && pwd )" 
 OHMYZSHDIR=$HOME/.oh-my-zsh
-AWESOMEDIR=$HOME/.config/awesome
 
 _link() {
     local source="$DIR/$1"
@@ -72,49 +71,19 @@ _gitclone() {
     fi
 }
 # This is just silly.
-_link "vimrc" ".vimrc"
-_link "ideavimrc" ".vimrc"
-_link "zshrc" ".zshrc"
-_link "kb.zsh-theme" "$OHMYZSHDIR/themes/kb.zsh-theme"
-_link "vim/colors" ".vim/colors"
-_link "vim/UltiSnips" ".vim/UltiSnips"
-_link "gitconfig" ".gitconfig"
-_link ".Xresources" ".Xresources"
-_link "npmrc" ".npmrc"
-_link "tmux.conf" ".tmux.conf"
-_link "cheat" ".cheat"
-_link ".tmuxinator" ".tmuxinator"
-_link "pylintrc" ".pylintrc"
 mkdir -p "$HOME/.config/nvim"
-_link "nvimrc" "$HOME/.config/nvim/init.vim"
-_copy "env.template.sh" "$DIR/env.local.sh"
-_copy "gitconfig.template" "$DIR/gitconfig.local"
+_link "nvim/init.vim" ".config/nvim/init.vim"
+_link "idea/ideavimrc" ".ideavimrc"
+_link "zsh/zshrc" ".zshrc"
+_link "oh-my-zsh-themes/kb.zsh-theme" "$OHMYZSHDIR/themes/kb.zsh-theme"
+_copy "git/gitconfig.template" "$DIR/git/gitconfig.local"
+_link "git/gitconfig.local" ".gitconfig"
+_link "javascript/npmrc" ".npmrc"
+_link "tmux/tmux.conf" ".tmux.conf"
+_link "tmux/tmuxinator" ".tmuxinator"
+_link "python/pylintrc" ".pylintrc"
+_copy "env/env.template.sh" "$DIR/env/env.local.sh"
 _gitclone "https://github.com/tmux-plugins/tpm" "$HOME/.tmux/plugins/tpm"
-_gitclone "https://github.com/gmarik/vundle.git" "$HOME/.vim/bundle/vundle"
 _gem "tmuxinator"
 
-
 gem update
-
-# _link "awesome/rc.lua", "$AWESOMEDIR/rc.lua"
-# _link "awesome/runconce.lua", "$AWESOMEDIR/runonce.lua"
-# _link "awesome/volume.lua", "$AWESOMEDIR/volume.lua"
-
-# ln -s $DIR/ideavimrc ~/.ideavimrc
-# ln -s $DIR/zshrc ~/.zshrc
-# ln -s $DIR/kb.zsh-theme $OHMYZSHDIR/themes
-# ln -s $DIR/vim/colors ~/.vim/colors
-# ln -s $DIR/vim/UltiSnips ~/.vim/UltiSnips
-# ln -s $DIR/gitconfig ~/.gitconfig
-# ln -s $DIR/.Xresources ~/.Xresources
-# ln -s $DIR/npmrc ~/.npmrc
-# ln -s $DIR/tmux.conf ~/.tmux.conf
-# ln -s $DIR/cheat ~/.cheat
-# ln -s $DIR/awesome/rc.lua $AWESOMEDIR/rc.lua
-# ln -s $DIR/awesome/runonce.lua $AWESOMEDIR/runonce.lua
-# ln -s $DIR/awesome/volume.lua $AWESOMEDIR/volume.lua
-# cp $DIR/env.template.sh $DIR/env.local.sh
-# cp $DIR/gitconfig.template $DIR/gitconfig.local
-
-
-

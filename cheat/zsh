@@ -1,3 +1,0 @@
-command !$      - append the arguments of the previous command
-!-2             - History: the command before last
-!!:s/fred/joe/  - Previous command: substitute fred with joe 

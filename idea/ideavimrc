@@ -1,0 +1,12 @@
+set relativenumber
+
+
+inoremap <C-t> <esc>A
+
+inoremap jk <esc>
+
+inoremap <C-CR> <C-o>o
+
+nnoremap 0 0^
+
+nnoremap <Space>i `.
