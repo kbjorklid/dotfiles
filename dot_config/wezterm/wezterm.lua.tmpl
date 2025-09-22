@@ -11,8 +11,11 @@ config.font = wezterm.font_with_fallback {
 config.hide_tab_bar_if_only_one_tab = true
 config.line_height = 1.1
 
--- Set the default program to PowerShell 7+
+{{ if eq .chezmoi.os "windows" -}}
 config.default_prog = { 'pwsh.exe', '-NoLogo' }
+{{ else -}}
+config.default_prog = { 'zsh' }
+{{ end -}}
 
 config.keys = {
   -- Send a literal CTRL-a when you press CTRL-a, a
