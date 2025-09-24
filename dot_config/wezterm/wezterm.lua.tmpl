@@ -2,6 +2,32 @@
 local wezterm = require 'wezterm'
 local config = {}
 
+config.initial_cols = 120
+config.initial_rows = 80
+
+config.window_frame = {
+  font = wezterm.font { family = 'JetBrainsMono NF' },
+
+  -- The size of the font in the tab bar.
+  -- Default to 10.0 on Windows but 12.0 on other systems
+  -- font_size = 12.0,
+
+  -- The overall background color of the tab bar when
+  -- the window is focused
+  active_titlebar_bg = '#333333',
+
+  -- The overall background color of the tab bar when
+  -- the window is not focused
+  inactive_titlebar_bg = '#333333',
+}
+
+config.colors = {
+  tab_bar = {
+    -- The color of the inactive tab bar edge/divider
+    inactive_tab_edge = '#575757',
+  },
+}
+
 config.color_scheme = 'Catppuccin Frappe'
 config.window_background_opacity = 0.95
 config.font = wezterm.font_with_fallback {
@@ -20,52 +46,45 @@ config.default_prog = { 'pwsh.exe', '-NoLogo' }
 {{ end -}}
 
 config.keys = {
-  -- Send a literal CTRL-a when you press CTRL-a, a
-  {
-    key = 'a',
-    mods = 'LEADER',
-    action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
-  },
-
   -- =========================================================================
   -- TABS
   -- Keys are chosen to be mnemonic (c for create, n/p for next/prev)
   -- =========================================================================
-  -- Create a new tab (Leader, c)
+  -- Create a new tab 
   {
-    key = 'c',
-    mods = 'LEADER',
+    key = 't',
+    mods = 'META',
     action = wezterm.action.SpawnTab 'DefaultDomain',
   },
-  -- Close the current tab (Leader, x)
+  -- Close the current tab 
   {
     key = 'x',
-    mods = 'LEADER',
+    mods = 'META',
     action = wezterm.action.CloseCurrentTab { confirm = true },
   },
   -- Navigate tabs (Leader, n for next, p for previous)
-  { key = 'n', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(1) },
-  { key = 'p', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(-1) },
+  { key = 'n', mods = 'META', action = wezterm.action.ActivateTabRelative(1) },
+  { key = 'p', mods = 'META', action = wezterm.action.ActivateTabRelative(-1) },
   -- Go to specific tabs (Leader, 1-9)
-  { key = '1', mods = 'LEADER', action = wezterm.action.ActivateTab(0) },
-  { key = '2', mods = 'LEADER', action = wezterm.action.ActivateTab(1) },
-  { key = '3', mods = 'LEADER', action = wezterm.action.ActivateTab(2) },
-  { key = '4', mods = 'LEADER', action = wezterm.action.ActivateTab(3) },
-  { key = '5', mods = 'LEADER', action = wezterm.action.ActivateTab(4) },
-  { key = '6', mods = 'LEADER', action = wezterm.action.ActivateTab(5) },
-  { key = '7', mods = 'LEADER', action = wezterm.action.ActivateTab(6) },
-  { key = '8', mods = 'LEADER', action = wezterm.action.ActivateTab(7) },
-  { key = '9', mods = 'LEADER', action = wezterm.action.ActivateTab(-1) }, -- Last tab
+  { key = '1', mods = 'META', action = wezterm.action.ActivateTab(0) },
+  { key = '2', mods = 'META', action = wezterm.action.ActivateTab(1) },
+  { key = '3', mods = 'META', action = wezterm.action.ActivateTab(2) },
+  { key = '4', mods = 'META', action = wezterm.action.ActivateTab(3) },
+  { key = '5', mods = 'META', action = wezterm.action.ActivateTab(4) },
+  { key = '6', mods = 'META', action = wezterm.action.ActivateTab(5) },
+  { key = '7', mods = 'META', action = wezterm.action.ActivateTab(6) },
+  { key = '8', mods = 'META', action = wezterm.action.ActivateTab(7) },
+  { key = '9', mods = 'META', action = wezterm.action.ActivateTab(-1) }, -- Last tab
 
 
   -- =========================================================================
   -- PANES (Splits)
   -- We use tmux-like keys: " for horizontal, % for vertical
   -- =========================================================================
-  -- Split pane horizontally (Leader, |)
+  -- Split pane horizontally 
   {
-    key = '|',
-    mods = 'LEADER',
+    key = 'g',
+    mods = 'META',
     action = wezterm.action.SplitPane {
       direction = 'Right',
       size = { Percent = 50 },
@@ -73,8 +92,8 @@ config.keys = {
   },
   -- Split pane vertically (Leader, -)
   {
-    key = '-',
-    mods = 'LEADER',
+    key = 'b',
+    mods = 'META',
     action = wezterm.action.SplitPane {
       direction = 'Down',
       size = { Percent = 50 },
@@ -95,23 +114,23 @@ config.keys = {
   { key = 'j', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Down' },
 
   -- Resize panes using Leader + SHIFT + Arrow Keys
-  { key = 'h',  mods = 'LEADER|SHIFT', action = wezterm.action.AdjustPaneSize { 'Left', 1 } },
-  { key = 'l', mods = 'LEADER|SHIFT', action = wezterm.action.AdjustPaneSize { 'Right', 1 } },
-  { key = 'k',    mods = 'LEADER|SHIFT', action = wezterm.action.AdjustPaneSize { 'Up', 1 } },
-  { key = 'j',  mods = 'LEADER|SHIFT', action = wezterm.action.AdjustPaneSize { 'Down', 1 } },
+  { key = 'h',  mods = 'META|SHIFT', action = wezterm.action.AdjustPaneSize { 'Left', 1 } },
+  { key = 'l', mods = 'META|SHIFT', action = wezterm.action.AdjustPaneSize { 'Right', 1 } },
+  { key = 'k',    mods = 'META|SHIFT', action = wezterm.action.AdjustPaneSize { 'Up', 1 } },
+  { key = 'j',  mods = 'META|SHIFT', action = wezterm.action.AdjustPaneSize { 'Down', 1 } },
 
 
   -- =========================================================================
   -- UTILITY (These are not behind the leader key)
   -- =========================================================================
   -- Copy and Paste (Standard terminal shortcuts)
-  { key = 'c', mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo 'Clipboard' },
-  { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
+  { key = 'c', mods = 'META', action = wezterm.action.CopyTo 'Clipboard' },
+  { key = 'v', mods = 'META', action = wezterm.action.PasteFrom 'Clipboard' },
 
   -- Toggle Fullscreen
   {
     key = 'Enter',
-    mods = 'ALT',
+    mods = 'META|SHIFT',
     action = wezterm.action.ToggleFullScreen,
   },
 
@@ -119,23 +138,12 @@ config.keys = {
   -- UTILITY (These ARE behind the leader key)
   -- =========================================================================
   -- Font size
-  { key = '=', mods = 'LEADER', action = wezterm.action.IncreaseFontSize },
-  { key = '-', mods = 'LEADER', action = wezterm.action.DecreaseFontSize },
-  { key = '0', mods = 'LEADER', action = wezterm.action.ResetFontSize },
+  --{ key = '=', mods = 'LEADER', action = wezterm.action.IncreaseFontSize },
+  --{ key = '-', mods = 'LEADER', action = wezterm.action.DecreaseFontSize },
+  --{ key = '0', mods = 'LEADER', action = wezterm.action.ResetFontSize },
 
-  -- Search scrollback (Leader, /)
-  {
-    key = '/',
-    mods = 'LEADER',
-    action = wezterm.action.Search { CaseSensitiveString = '' },
-  },
-
-  -- Activate the command palette / launcher (Leader, Space)
-  {
-    key = ' ', -- Space bar
-    mods = 'LEADER',
-    action = wezterm.action.ShowLauncher,
-  },
 }
 
 return config
+
+-- vim: set filetype=lua:
