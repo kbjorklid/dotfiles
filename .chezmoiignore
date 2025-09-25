@@ -4,4 +4,6 @@
 Documents/PowerShell
 {{- end }}
 {{- if ne .chezmoi.os "darwin"}}
+*.sh
+**/*.sh
 {{- end }}
