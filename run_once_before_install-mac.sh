@@ -92,6 +92,7 @@ brew_install neovim
 brew_install tree-sitter
 brew_install zoxide
 brew_install starship
+brew_install lazygit
 
 ### ----------------------------
 ### Clipboard tool (macOS)
