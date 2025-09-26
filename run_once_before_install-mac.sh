@@ -78,23 +78,20 @@ else
   echo "✓ Xcode Command Line Tools detected"
 fi
 
-### ----------------------------
-### Basic utils
-### ----------------------------
-# git, make, unzip, gcc
-# Note: macOS includes BSD make/clang via CLI tools; we also install GNU gcc via brew for completeness.
 brew_install git
-# Install GNU make as 'gmake' (macOS already has BSD 'make'); optional but harmless
 brew_install make
 brew_install unzip
 brew_install gcc
-
-### ----------------------------
-### Search tools
-### ----------------------------
-# ripgrep (rg) and fd (fd-find on Linux; on macOS the package is 'fd' and the binary is 'fd')
 brew_install ripgrep
 brew_install fd
+brew_install bat
+brew_install eza
+brew_install fzf
+brew_install jq
+brew_install neovim
+brew_install tree-sitter
+brew_install zoxide
+brew_install starship
 
 ### ----------------------------
 ### Clipboard tool (macOS)
@@ -109,10 +106,12 @@ else
   brew install pngpaste
 fi
 
-### ----------------------------
-### Nerd Font
-### ----------------------------
 brew_cask_install "$NERD_FONT_CASK"
+brew_cask_install ghostty
+brew_cask_install raycast
+brew_cask_install wezterm
+brew_cask_install zen
+brew_cask_install visual-studio-code
 
 
 ### ----------------------------
