@@ -29,19 +29,38 @@ function Install-WingetPackage {
 }
 
 Install-WingetPackage "Chocolatey.Chocolatey"
+
+{{ if (.dev_computer) }}
 Install-WingetPackage "Git.Git"
+Install-WingetPackage "GitHub.cli"
+Install-WingetPackage "JesseDuffield.lazygit"
+Install-WingetPackage "OpenJS.NodeJS.LTS"
+#Install-WingetPackage "JetBrains.Rider"
+{{ end }}
+
+{{ if not (.work_computer) }}
+Install-WingetPackage "Google.GoogleDrive"
+Install-WingetPackage "Discord.Discord"
+Install-WingetPackage "Creality.CrealityPrint"
+Install-WingetPackage "SoftFever.OrcaSlicer"
+{{ end }}
+
+{{ if (and (.work_computer) (.dev_computer)) }}
+Install-WingetPackage "Docker.DockerDesktop"
+{{ end }}
+
+{{ if (.game_computer) }}
+Install-WingetPackage "Valve.Steam"
+{{ end }}
+
 Install-WingetPackage "Neovim.Neovim"
 Install-WingetPackage "Google.Chrome"
-Install-WingetPackage "GitHub.cli"
-Install-WingetPackage "Google.GoogleDrive"
 Install-WingetPackage "Microsoft.PowerShell"
 Install-WingetPackage "wez.wezterm"
 Install-WingetPackage "ajeetdsouza.zoxide"
-Install-WingetPackage "JesseDuffield.lazygit"
 Install-WingetPackage "Microsoft.PowerToys"
 Install-WingetPackage "Microsoft.WindowsTerminal"
-Install-WingetPackage "Discord.Discord"
-Install-WingetPackage "OpenJS.NodeJS.LTS"
+Install-WingetPackage "Zen-Team.Zen-Browser"
 
 Install-ChocoPackageIfMissing "mingw"
 Install-ChocoPackageIfMissing "make"

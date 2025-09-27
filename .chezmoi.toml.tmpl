@@ -1,0 +1,12 @@
+{{- $work_computer := promptBoolOnce . "work_computer" "Is this a work computer (true/false)" -}}
+{{- $dev_computer := promptBoolOnce . "dev_computer" "Do you do development on this computer? (true/false)" -}}
+{{- $game_computer := promptBoolOnce . "game_computer" "Is this computer used for gaming? (true/false)" -}}
+{{- $email := promptStringOnce . "email" "Email address" -}}
+
+
+[data]
+    dev_computer      = {{ $dev_computer }}
+    email             = {{ $email | quote }}
+    github_user       = "kbjorklid"
+    work_computer     = {{ $work_computer }}
+    game_computer     = {{ $game_computer }}

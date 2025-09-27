@@ -78,21 +78,23 @@ else
   echo "✓ Xcode Command Line Tools detected"
 fi
 
+{{ if .dev_computer }}
 brew_install git
 brew_install make
-brew_install unzip
 brew_install gcc
+brew_install jq
+brew_install lazygit
+{{ end }}
+brew_install unzip
 brew_install ripgrep
 brew_install fd
 brew_install bat
 brew_install eza
 brew_install fzf
-brew_install jq
 brew_install neovim
 brew_install tree-sitter
 brew_install zoxide
 brew_install starship
-brew_install lazygit
 
 ### ----------------------------
 ### Clipboard tool (macOS)
@@ -112,8 +114,9 @@ brew_cask_install ghostty
 brew_cask_install raycast
 brew_cask_install wezterm
 brew_cask_install zen
+{{ if .dev_computer }}
 brew_cask_install visual-studio-code
-
+{{ end }}
 
 ### ----------------------------
 ### Summary
