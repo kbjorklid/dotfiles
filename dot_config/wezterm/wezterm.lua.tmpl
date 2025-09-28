@@ -2,8 +2,15 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-config.initial_cols = 120
+config.initial_cols = 146
 config.initial_rows = 40
+
+
+{{ if eq .chezmoi.os "windows" -}}
+-- On windows, there is a problem when moving the window between monitors
+-- This resolves it, but the window does not scale to monitor
+config.dpi=160
+{{ end -}}
 
 config.window_frame = {
   font = wezterm.font { family = 'JetBrainsMono NF' },
