@@ -29,6 +29,7 @@ function Install-WingetPackage {
 }
 
 Install-WingetPackage "Chocolatey.Chocolatey"
+if (Get-Command refreshenv -ErrorAction SilentlyContinue) { refreshenv }
 
 {{ if (.dev_computer) }}
 Install-WingetPackage "Git.Git"
@@ -69,5 +70,6 @@ Install-ChocoPackageIfMissing "ripgrep"
 Install-ChocoPackageIfMissing "fd"
 Install-ChocoPackageIfMissing "win32yank"
 Install-ChocoPackageIfMissing "wget"
+Install-ChocoPackageIfMissing "fzf"
 
 #Install-Module -Name Terminal-Icons -Repository PSGallery
