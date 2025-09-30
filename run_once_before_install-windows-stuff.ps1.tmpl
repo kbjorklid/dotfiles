@@ -29,7 +29,7 @@ function Install-WingetPackage {
 }
 
 Install-WingetPackage "Chocolatey.Chocolatey"
-if (Get-Command refreshenv -ErrorAction SilentlyContinue) { refreshenv }
+refreshenv
 
 {{ if (.dev_computer) }}
 Install-WingetPackage "Git.Git"
