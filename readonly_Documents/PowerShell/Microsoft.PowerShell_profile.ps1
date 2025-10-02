@@ -6,3 +6,13 @@ Invoke-Expression (& {
 })
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -PredictionSource History
+
+Remove-Alias -Name ls -ErrorAction SilentlyContinue
+
+function ls {
+    eza --long --git --header --icons @args
+}
+
+function tree {
+    eza --tree --icons @args
+}
