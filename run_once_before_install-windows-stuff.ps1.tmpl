@@ -36,6 +36,9 @@ Install-WingetPackage "GitHub.cli"
 Install-WingetPackage "JesseDuffield.lazygit"
 Install-WingetPackage "OpenJS.NodeJS.LTS"
 #Install-WingetPackage "JetBrains.Rider"
+
+refreshenv
+npm i -g opencode-ai
 {{ end }}
 
 {{ if not (.work_computer) }}
