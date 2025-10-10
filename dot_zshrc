@@ -142,3 +142,5 @@ export NVM_DIR="/Users/kalle.bjorklid/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 source ~/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$DOTNET_ROOT:$PATH"
