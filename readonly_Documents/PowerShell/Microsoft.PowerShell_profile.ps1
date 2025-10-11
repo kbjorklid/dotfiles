@@ -9,6 +9,12 @@ Set-PSReadLineOption -PredictionSource History
 
 Remove-Alias -Name ls -ErrorAction SilentlyContinue
 
+$LocalProfile = Join-Path -Path $HOME -ChildPath "Documents\PowerShell\local-profile.ps1"
+
+if (Test-Path -Path $LocalProfile) {
+    . $LocalProfile
+}
+
 function ls {
     eza --long --git --header --icons @args
 }

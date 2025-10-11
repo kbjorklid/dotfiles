@@ -1,0 +1,12 @@
+
+
+
+$FilePath = Join-Path -Path $HOME -ChildPath "Documents\PowerShell\local-profile.ps1"
+$Content = "# Local profile - executed on this computer but not a part of chezmoi config"
+
+if (-not (Test-Path -Path $FilePath)) {
+    Set-Content -Path $FilePath -Value $Content
+    Write-Host "Local script for powershell profile created successfully at $FilePath" -ForegroundColor Green
+} else {
+    Write-Host "Local script for powershell profile already exists at $FilePath." -ForegroundColor Yellow
+}
