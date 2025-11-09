@@ -35,6 +35,11 @@ Install-WingetPackage "Git.Git"
 Install-WingetPackage "GitHub.cli"
 Install-WingetPackage "JesseDuffield.lazygit"
 Install-WingetPackage "OpenJS.NodeJS.LTS"
+
+Install-ChocoPackageIfMissing "python"
+Install-ChocoPackageIfMissing "uv"
+Install-ChocoPackageIfMissing "jq"
+
 #Install-WingetPackage "JetBrains.Rider"
 
 refreshenv
@@ -76,4 +81,3 @@ Install-ChocoPackageIfMissing "fzf"
 Install-ChocoPackageIfMissing "starship"
 Install-ChocoPackageIfMissing "nerd-fonts-jetbrainsmono"
 Install-ChocoPackageIfMissing "eza"
-Install-ChocoPackageIfMissing "uv"
